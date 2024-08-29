@@ -1,2 +1,2 @@
-# snap.py
-a framework and compiler for Snap! projects
+# SnapBYOB
+a framework and compiler for Snap! (Build Your Own Blocks)
