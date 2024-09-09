@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "snapbyob"
+description = "A python wrapper for Snap (Build Your Own Blocks)"
+readme = { file = "README.txt", content-type = "text/markdown" }
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+authors = [{ name = "shysolocup" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dynamic = ["version", "dependencies"]
+
+
+[project.urls]
+Homepage = "https://github.com/shysolocup/snapbyob"
+Repository = "https://github.com/shysolocup/snapbyob"
+Documentation = "https://github.com/shysolocup/snapbyob/wiki"
+"Issue tracker" = "https://github.com/shysolocup/snapbyob/wiki"
+"Changelog" = "https://github.com/shysolocup/snapbyob/releases"
+
+
+[tool.setuptools.dynamic]
+dependencies = { file = "requirements.txt" }
+
+
+[project.optional-dependencies]
+voice = ["PyNaCl>=1.3.0,<1.6"]
+docs = [
+    "sphinx==4.4.0",
+    "sphinxcontrib_trio==1.1.2",
+    # TODO: bump these when migrating to a newer Sphinx version
+    "sphinxcontrib-websupport==1.2.4",
+    "sphinxcontrib-applehelp==1.0.4",
+    "sphinxcontrib-devhelp==1.0.2",
+    "sphinxcontrib-htmlhelp==2.0.1",
+    "sphinxcontrib-jsmath==1.0.1",
+    "sphinxcontrib-qthelp==1.0.3",
+    "sphinxcontrib-serializinghtml==1.1.5",
+    "typing-extensions>=4.3,<5",
+    "sphinx-inline-tabs==2023.4.21",
+]
+
+
+test = [
+    "coverage[toml]",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "pytest-mock",
+    "typing-extensions>=4.3,<5",
+    "tzdata; sys_platform == 'win32'",
+]
+
+
+[tool.setuptools]
+packages = [
+    "snapbyob",
+]
+include-package-data = true
+
+
+[tool.coverage.run]
+omit = [
+    "discord/__main__.py",
+    "discord/types/*",
+    "*/_types.py",
+]
+
+exclude = [
+    "**/__pycache__",
+    "wiki",
+    ".vscode",
+    ".github"
+]

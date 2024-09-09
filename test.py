@@ -1,4 +1,4 @@
-from src import Project;
+from snapbyob import Project;
 import xmltodict as xml;
 import asyncio;
 import json;
