@@ -5,18 +5,22 @@ import json;
 
 
 proj = Project({
-    "name": "test"
+    "name": "very cool"
 });
 
+
 print(proj.name);
+
 
 @ proj.on
 def blockPlaced():
     print("Block Placed");
 
+
 async def test():
     stuff = await proj.scripts.insert('motion.move');
     print(stuff);
+
 
 asyncio.run(test());
 
