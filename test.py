@@ -11,7 +11,7 @@ proj = Project({
 
 @proj.on("ping")
 async def stuff(self, time):
-    print(time);
+    print(self, time);
 
 
 async def test():

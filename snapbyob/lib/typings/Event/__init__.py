@@ -23,12 +23,12 @@ class Event:
 
 
     def Listen(self, callback):
-        print('listening');
+        # print('listening');
         self.listeners.append(callback);
 
 
     async def Fire(self, *args):
-        print('firing');
+        # print('firing');
         for l in self.listeners:
             await l(*args);
     
