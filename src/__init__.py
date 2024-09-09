@@ -11,19 +11,27 @@ import xmltodict as xml;
 # print(requests.get('https://snap.berkeley.edu/api/v1/projects/adfs/test'));
 
 
-# methods
-from .lib.methods.id import id
+rawtypes = {
+    'Event': '.lib.typings.Event',
+    'Project': '.lib.typings.Project',
+    'BlockInstance': '.lib.typings.BlockInstance',
+    'Block': '.lib.typings.Block',
+    'Scripts': '.lib.typings.Scripts',
+    'BlockHolder': '.lib.typings.BlockHolder'
+};
 
 
-# types
-from .lib.typings.Event import Event
-from .lib.typings.Project import Project
+class NewTypings:
+    x = None
 
 
-Typings = {
-    "Event": Event,
-    "Project": Project
-}
+Typings = NewTypings();
+
+
+for n, d in rawtypes.items():
+    exec('from {d} import {n}'.format(d=d, n=n));
+    exec('Typings.{n} = {n}'.format(d=d, n=n));
+    
 
 
 # print(stuff);

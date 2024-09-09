@@ -1,14 +1,24 @@
 from src import Project;
 import xmltodict as xml;
+import asyncio;
 import json;
 
 
-project = Project({
+proj = Project({
     "name": "test"
 });
 
+print(proj.name);
 
-print(project.name);
+@ proj.on
+def blockPlaced():
+    print("Block Placed");
+
+async def test():
+    stuff = await proj.scripts.insert('motion.move');
+    print(stuff);
+
+asyncio.run(test());
 
 
 '''

@@ -1,23 +1,7 @@
-class Scripts:
+from ....lib.methods.insertBlock import insertBlock
+from ..BlockHolder import BlockHolder
+
+class Scripts(BlockHolder):
 
     def __init__(self, proj):
         self.project = proj;
-
-    def insert(self, ref, *args):
-
-        global block;
-        block = self.project.blocks;
-
-        if type(ref) == str:
-
-            refs = ref.split(".");
-            for r in refs:
-                block = block[r];
-
-        elif type(ref) == list:
-
-            for r in refs:
-                block = block[r];
-
-
-5

@@ -2,33 +2,33 @@ from ....lib.methods.id import id
 
 
 class Event:
-    def __init__(self, *args):
+    def __init__(self, proj, args):
 
-        name = None;
-        parent = None;
-
-        if len(args) >= 1:
-            name = args[0];
-        
-        if len(args) >= 2:
-            parent = args[1];
+        self.name = args.get("name");
+        self.parent = args.get("parent");
 
         self.id = id(8);
         self.listeners = [];
-        self.parent = parent;
-        self.name = name;
+        self.project = proj;
+
+        if not self.name:
+            self.name = self.id;
     
-        if name and parent:
-            if not parent.events:
-                parent.events = { name: self };
+        if self.name and self.parent:
+            if not self.parent.events:
+                self.parent.events = { self.name: self };
         
-            if not parent.events.get(name):
-                parent.events[name] = self;
+            if not self.parent.events.get(self.name):
+                self.parent.events[self.name] = self;
 
     def Listen(self, callback):
         self.listeners.append(callback);
 
-    def Fire(self, *args):
+    async def Fire(self, *args):
+        for l in self.listeners:
+            l(args);
+    
+    def FireSync(self, *args):
         for l in self.listeners:
             l(args);
 
