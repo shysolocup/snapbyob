@@ -22,7 +22,7 @@ rawtypes = {
 
 
 class NewTypings:
-    x = None
+    pass
 
 
 Typings = NewTypings();

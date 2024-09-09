@@ -21,16 +21,22 @@ class Event:
             if not self.parent.events.get(self.name):
                 self.parent.events[self.name] = self;
 
+
     def Listen(self, callback):
+        print('listening');
         self.listeners.append(callback);
 
+
     async def Fire(self, *args):
+        print('firing');
         for l in self.listeners:
-            l(args);
+            await l(*args);
     
+
     def FireSync(self, *args):
         for l in self.listeners:
-            l(args);
+            l(*args);
+
 
     def Destroy(self):
         print("destroyed but not done yet");

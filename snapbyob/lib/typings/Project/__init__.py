@@ -1,8 +1,12 @@
 from ..Event import Event
 from ..Block import Block
 from ..Scripts import Scripts;
+
 from ....lib.methods.id import id
+from ....lib.methods.pingtime import pingtime
+
 import asyncio;
+import time;
 
 
 class Project:
@@ -13,11 +17,13 @@ class Project:
 
     @name.setter
     def name(self, v):
+        
         asyncio.run(self.events["projectNameChanged"].Fire());
         self.data["project"]["@name"] = v
 
-    def ping(self):
-        self.events['ping'].Fire(self);
+
+    async def ping(self):
+        await self.events['ping'].Fire(self, pingtime());
 
 
     def discretenew(self, t, **args):
@@ -33,6 +39,7 @@ class Project:
             t = globals()[t];
         
         stuff = t(self, args);
+
         await self.events['new'].Fire(self, stuff);
         return stuff
 
@@ -76,15 +83,11 @@ class Project:
             'blockUpdated': self.discretenew(Event)
         }
 
-        class EventHandler:
-            def __init__(onSelf, event):
-                onSelf.event = event;
-                
-            def __call__(onSelf, callback):
-                self.events[onSelf.event].append(callback);
+        def EventHandle(event):
+            return lambda callback : self.events[event].Listen(callback);
         
-        self.EventHandler = EventHandler
-        self.on = EventHandler;
+        self.EventHandle = EventHandle;
+        self.on = EventHandle;
 
         if not options:
             options = {};

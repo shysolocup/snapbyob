@@ -9,18 +9,13 @@ proj = Project({
 });
 
 
-print(proj.name);
-
-
-@ proj.on
-def blockPlaced():
-    print("Block Placed");
+@proj.on("ping")
+async def stuff(self, time):
+    print(time);
 
 
 async def test():
-    stuff = await proj.scripts.insert('motion.move');
-    print(stuff);
-
+    await proj.ping();
 
 asyncio.run(test());
 
