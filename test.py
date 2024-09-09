@@ -1,3 +1,27 @@
+from src import Project;
+import xmltodict as xml;
+import json;
+
+
+project = Project({
+    "name": "test"
+});
+
+
+print(project.name);
+
+
+'''
+with open("Python Interpreter 5.0.xml") as file:
+    stuff = xml.parse(file.read())
+    print(stuff);
+
+    with open("test.json", "w") as jsn:
+        dumped = json.dumps(stuff, sort_keys=True, indent=4);
+        jsn.write(dumped);
+'''
+
+
 '''import requests
 
 token = "0bbdb4d78d92f90df71f2d70211c326d848cf57dfd1548c9b3f7b61e268425534ca8518603863de9fc380de04df3d494f206ee597eadc8af00ab501f6e6ef7ab"
@@ -22,28 +46,3 @@ rq = requests.post('https://snap.berkeley.edu/api/v1/users/asdfs', json={
 });
 
 print(rq.text);'''
-
-
-from src import Project;
-import xmltodict as xml;
-import json;
-
-
-
-project = Project({
-    "name": "test"
-});
-
-
-print(project.name);
-
-
-'''
-with open("Python Interpreter 5.0.xml") as file:
-    stuff = xml.parse(file.read())
-    print(stuff);
-
-    with open("test.json", "w") as jsn:
-        dumped = json.dumps(stuff, sort_keys=True, indent=4);
-        jsn.write(dumped);
-'''

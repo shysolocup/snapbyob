@@ -1,28 +1,36 @@
-import os;
-stuff = {};
+from ....lib.methods.id import id
 
-dir = os.path.realpath(__file__).replace("__init__.py", "")
 
-__path__ = __import__('pkgutil').extend_path(dir, __name__)
+class Event:
+    def __init__(self, *args):
 
-for file in os.listdir(dir):
-    filename = os.fsdecode(file);
+        name = None;
+        parent = None;
 
-    if not filename.endswith(".py"):
+        if len(args) >= 1:
+            name = args[0];
+        
+        if len(args) >= 2:
+            parent = args[1];
 
-        modstring = "{0}".format(filename);
-        dirstring = "{0}/{1}/__init__.py".format(dir, filename);
+        self.id = id(8);
+        self.listeners = [];
+        self.parent = parent;
+        self.name = name;
+    
+        if name and parent:
+            if not parent.events:
+                parent.events = { name: self };
+        
+            if not parent.events.get(name):
+                parent.events[name] = self;
 
-        # print(modstring);
+    def Listen(self, callback):
+        self.listeners.append(callback);
 
-        # print(os.path.isfile(dirstring))
+    def Fire(self, *args):
+        for l in self.listeners:
+            l(args);
 
-        if os.path.isfile(dirstring):
-
-            # module = __import__(modstring);
-            exec("from {0} import *".format(filename));
-            # print(module)
-
-            # stuff[filename] = module;
-
-        # exec('typings[' + filename + '] = ' + filename);
+    def Destroy(self):
+        print("destroyed but not done yet");

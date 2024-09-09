@@ -1,28 +1,84 @@
-import os;
-stuff = {};
+from ..Event import Event
+from ..Scripts import Scripts;
+from ....lib.methods.id import id
 
-dir = os.path.realpath(__file__).replace("__init__.py", "")
 
-__path__ = __import__('pkgutil').extend_path(dir, __name__)
+class Project:
 
-for file in os.listdir(dir):
-    filename = os.fsdecode(file);
+    def ping(self):
+        self.events['ping'].Fire(self);
 
-    if not filename.endswith(".py"):
+    def __init__(self, *args):
 
-        modstring = "{0}".format(filename);
-        dirstring = "{0}/{1}/__init__.py".format(dir, filename);
+        options = args[0];
 
-        # print(modstring);
+        self.events = {}
+        
+        self.scripts = Scripts(self);
 
-        # print(os.path.isfile(dirstring))
+        self.events = {
+            'ping': Event(),
+            
+            # events
+            'eventCreated': Event(),
+            'eventDestroyed': Event(),
+            'eventUpdated': Event(),
 
-        if os.path.isfile(dirstring):
+            # blocks
+            'blockPlaced': Event(),
+            'blockCreated': Event(),
+            'blockDestroyed': Event(),
+            'blockUpdated': Event()
+        }
 
-            # module = __import__(modstring);
-            exec("from {0} import *".format(filename));
-            # print(module)
+        class EventHandle:
+            def __init__(onSelf, event):
+                onSelf.event = event;
+                
+            def __call__(onSelf, callback):
+                self.events[onSelf.event].append(callback);
 
-            # stuff[filename] = module;
+        self.on = EventHandle;
 
-        # exec('typings[' + filename + '] = ' + filename);
+        if not options:
+            options = {};
+
+        projId = id(8);
+        projName = options.get('name');
+
+        if not projName:
+            projName = projId;
+        
+        projVer = options.get("version");
+
+        if not projVer:
+            self.projVer = 2;
+
+        self.data = {
+            "project": {
+
+                "@app": "Snap! 10, https://snap.berkeley.edu",
+                "@name": projName,
+                "@version": projVer,
+                "notes": None,
+
+                "scenes": {
+                    "@select": "1",
+                }
+            }
+        };
+
+        ## properties
+        @property
+        def name(self):
+            return self.Data["@name"]
+
+        @name.setter
+        def name(self, v):
+            self.Data["@name"] = v
+
+
+
+        '''with open(projName+".xml", "w") as file:
+            file.write("");
+            self.file = file;'''
