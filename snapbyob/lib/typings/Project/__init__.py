@@ -43,21 +43,46 @@ class Project:
         await self.events['ping'].Fire(self, pingtime()); # Project, pingtime
 
 
-    def discretenew(self, t, **args):
+    def discretenew(self, t, *args, **kwargs):
+
         if type(t) == str:
             t = globals()[t];
         
-        return t(self, **args);
+        arglen = len(args);
+        kwarglen = len(kwargs);
+
+        if arglen > 0 and kwarglen > 0:
+            return t(self, *args, **kwargs);
+    
+        elif arglen > 0 and kwarglen <= 0:
+            return t(self, *args);
+    
+        elif arglen <= 0 and kwarglen > 0:
+            return t(self, **kwargs);
 
 
-    async def new(self, t, **args):
+
+    async def new(self, t, *args, **kwargs):
         if type(t) == str:
             t = globals()[t];
-        
-        stuff = t(self, **args);
 
-        await self.events['new'].Fire(self, stuff); # Project, Any
-        return stuff
+        arglen = len(args);
+        kwarglen = len(kwargs);
+        
+        if arglen > 0 and kwarglen > 0:
+            stuff = t(self, *args, **kwargs);
+            await self.events['new'].Fire(self, stuff); # Project, Any
+            return stuff
+        
+        elif arglen > 0 and kwarglen <= 0:
+            stuff = t(self, *args);
+            await self.events['new'].Fire(self, stuff); # Project, Any
+            return stuff
+        
+        elif arglen <= 0 and kwarglen > 0:
+            stuff = t(self, **kwargs);
+            await self.events['new'].Fire(self, stuff); # Project, Any
+            return stuff
 
 
     def __init__(self, *args):
@@ -87,11 +112,11 @@ class Project:
                 makerArgs.__setitem__('name', callback.__name__);
             
 
-        def BlockMaker(**makerArgs): return lambda callback: (
-            blockCat(makerArgs),
-            blockName(makerArgs, callback),
-            makerArgs.__setitem__("f", callback),
-            self.discretenew(Block, args=makerArgs)
+        def BlockMaker(*args, **kwargs): return lambda callback: (
+            blockCat(kwargs),
+            blockName(kwargs, callback),
+            kwargs.__setitem__("f", callback),
+            self.discretenew(Block, kwargs=kwargs, args=args)
         );
     
         self.BlockMaker = BlockMaker;

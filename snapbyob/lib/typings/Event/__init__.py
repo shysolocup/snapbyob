@@ -2,10 +2,10 @@ from ....lib.methods.id import id
 
 
 class Event:
-    def __init__(self, proj, **args):
+    def __init__(self, proj, **kwargs):
 
-        self.name = args.get('name');
-        self.parent = args.get('parent');
+        self.name = kwargs.get('name');
+        self.parent = kwargs.get('parent');
 
         self.id = id(8);
         self.listeners = [];

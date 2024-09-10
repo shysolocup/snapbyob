@@ -1,6 +1,6 @@
 from ..typings.BlockInstance import BlockInstance;
 
-async def insertBlock(self, ref, args):
+async def insertBlock(self, ref, kwargs):
         global block
         block = self.project.blocks;
         reflist = [ block ];
@@ -29,7 +29,7 @@ async def insertBlock(self, ref, args):
         
         block = reflist[-1];
         
-        inst = await self.project.new(BlockInstance, block=block, args=args);
+        inst = await self.project.new(BlockInstance, block=block, kwargs=kwargs);
         inst.ref = reflist;
         inst.refstring = ref;
 
