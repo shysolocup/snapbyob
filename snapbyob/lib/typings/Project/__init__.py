@@ -4,9 +4,20 @@ from ..Scripts import Scripts;
 
 from ....lib.methods.id import id
 from ....lib.methods.pingtime import pingtime
+from ....lib.methods.formFiles import formFiles;
 
 import asyncio;
 import time;
+import os;
+
+dirstring = os.path.realpath(__file__).replace("__init__.py", "");
+splitpath = os.path.splitroot(dirstring);
+drive, sep, path = splitpath;
+
+separated = path.split(sep);
+separated.pop(); separated.pop(); separated.pop(); separated.pop();
+
+rawblocks = formFiles(drive, sep, separated, '....', [ 'lib', 'blocks' ]);
 
 
 class Project:
@@ -53,6 +64,15 @@ class Project:
         self.blocks = {
             'motion': {}
         };
+
+        self.rawblockdata = {};
+
+        for n, d in rawblocks.items():
+
+            print(n, d);
+
+            exec('from {d} import {n}'.format(d=d, n=n));
+            exec('rawblockdata[n] = {n}'.format(n=n));
 
         def BlockMaker(**makerArgs): return lambda callback: (
             makerArgs.__setitem__("f", callback),

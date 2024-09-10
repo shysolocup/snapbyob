@@ -1,13 +1,11 @@
-import random;
-import json;
-import requests;
-import asyncio;
 import os;
-import pathlib;
 
 
 import xml.etree.ElementTree as ET;
 import xmltodict as xml;
+
+
+from .lib.methods.formFiles import formFiles
 
 
 # print(requests.get('https://snap.berkeley.edu/api/v1/projects/adfs/test'));
@@ -20,29 +18,7 @@ drive, sep, path = splitpath;
 separated = path.split(sep);
 separated.pop();
 
-
-def formFiles(extensions):
-    d = separated;
-
-    for e in extensions:
-        d.append(e);
-    
-    adir = '{drive}{sep}{path}'.format(drive=drive, sep=sep, path=sep.join(d));
-
-    stuff = {};
-
-    for file in os.listdir(adir):
-        filename = os.fsdecode(file);
-
-        if not filename.endswith(".py"):
-
-            modstring = ".{0}.{1}".format('.'.join(extensions), filename);
-            stuff[filename] = modstring;
-
-    return stuff;
-
-
-rawtypes = formFiles([ 'lib', 'typings' ]);
+rawtypes = formFiles(drive, sep, separated, '.', [ 'lib', 'typings' ]);
 
 class NewTypings:
     pass
