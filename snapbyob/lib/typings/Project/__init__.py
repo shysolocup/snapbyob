@@ -68,19 +68,17 @@ class Project:
         self.scripts = Scripts(self);
 
 
-        self.blocks = {
-            'motion': {}
-        };
+        self.blocks = {};
 
 
         def blockCat(makerArgs):
             category = makerArgs.get("category")
 
-            if type(category) == str and not self.blocks[category]:
+            if type(category) == str and not self.blocks.get("category"):
                 self.blocks[category] = {};
                 makerArgs["category"] = self.blocks[category];
         
-            elif type(category) == str and self.blocks[category]:
+            elif type(category) == str and self.blocks.get("category"):
                 makerArgs["category"] = self.blocks[category];
 
         
@@ -100,7 +98,6 @@ class Project:
 
 
         for k, data in rawblockdata.items():
-            print(data);
             BlockMaker(name=data["blockdata"]["name"], category=data["blockdata"]["category"])(data["callback"]);
 
 
