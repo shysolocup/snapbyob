@@ -13,9 +13,10 @@ def formFiles(drive, sep, separated, ref, extensions):
     stuff = {};
 
     for file in os.listdir(adir):
-        filename = os.fsdecode(file);
+        if not file.startswith("__") and not file.endswith("__"):
+            filename = os.fsdecode(file);
 
-        modstring = "{0}{1}.{2}".format(ref, '.'.join(extensions), filename.replace('.py', ''));
-        stuff[filename.replace('.py', '')] = modstring;
+            modstring = "{0}{1}.{2}".format(ref, '.'.join(extensions), filename.replace('.py', ''));
+            stuff[filename.replace('.py', '')] = modstring;
 
     return stuff;

@@ -18,6 +18,13 @@ separated = path.split(sep);
 separated.pop(); separated.pop(); separated.pop(); separated.pop();
 
 rawblocks = formFiles(drive, sep, separated, '....', [ 'lib', 'blocks' ]);
+rawblockdata = {};
+
+for n, d in rawblocks.items():
+    impstring = 'from {d} import blockdata, callback'.format(d=d, n=n);
+    formstring = 'rawblockdata[n] = { "blockdata": blockdata, "callback": callback }';
+    exec(impstring);
+    exec(formstring)
 
 
 class Project:
@@ -65,27 +72,36 @@ class Project:
             'motion': {}
         };
 
-        self.rawblockdata = {};
 
-        for n, d in rawblocks.items():
+        def blockCat(makerArgs):
+            category = makerArgs.get("category")
 
-            print(n, d);
+            if type(category) == str and not self.blocks[category]:
+                self.blocks[category] = {};
+                makerArgs["category"] = self.blocks[category];
+        
+            elif type(category) == str and self.blocks[category]:
+                makerArgs["category"] = self.blocks[category];
 
-            exec('from {d} import {n}'.format(d=d, n=n));
-            exec('rawblockdata[n] = {n}'.format(n=n));
+        
+        def blockName(makerArgs, callback):
+            if not makerArgs.get("name"):
+                makerArgs.__setitem__('name', callback.__name__);
+            
 
         def BlockMaker(**makerArgs): return lambda callback: (
+            blockCat(makerArgs),
+            blockName(makerArgs, callback),
             makerArgs.__setitem__("f", callback),
-            makerArgs.__setitem__('name', callback.__name__),
             self.discretenew(Block, args=makerArgs)
         );
     
         self.BlockMaker = BlockMaker;
 
 
-        @BlockMaker(category=self.blocks['motion'])
-        def move(self, x, y):
-            print(x, y);
+        for k, data in rawblockdata.items():
+            print(data);
+            BlockMaker(name=data["blockdata"]["name"], category=data["blockdata"]["category"])(data["callback"]);
 
 
         self.events = {
