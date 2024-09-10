@@ -5,11 +5,14 @@ from ..BlockHolder import BlockHolder
 
 class Block(BlockHolder):
 
-    def __init__(self, proj, kwargs):
+    def __init__(self, proj, args, kwargs):
 
         self.project = proj;
         self.children = {};
         self.id = id(8);
+
+        self.args = args;
+        self.kwargs = kwargs;
 
         self.name = kwargs.get("name");
         self.category = kwargs.get("category");
@@ -17,6 +20,9 @@ class Block(BlockHolder):
         self.parent = kwargs.get("p");
 
         self.id = id(8);
+
+        if type(self.category) == str:
+            self.category = self.project.blocks[self.category];
 
         self.category[self.name] = self;
         

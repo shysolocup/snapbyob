@@ -11,7 +11,7 @@ proj = Project({
 
 @proj.on("blockPlaced")
 async def sdjfdsjl(self, ctx):
-    print(ctx.args);
+    print(ctx.kwargs);
 
 
 @proj.on("ping")

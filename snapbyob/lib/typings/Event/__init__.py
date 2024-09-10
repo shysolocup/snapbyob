@@ -2,7 +2,7 @@ from ....lib.methods.id import id
 
 
 class Event:
-    def __init__(self, proj, **kwargs):
+    def __init__(self, proj, *args, **kwargs):
 
         self.name = kwargs.get('name');
         self.parent = kwargs.get('parent');
@@ -10,6 +10,9 @@ class Event:
         self.id = id(8);
         self.listeners = [];
         self.project = proj;
+
+        self.args = args;
+        self.kwargs = kwargs;
 
         if not self.name:
             self.name = self.id;

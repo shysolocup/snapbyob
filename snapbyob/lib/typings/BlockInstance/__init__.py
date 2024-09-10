@@ -2,10 +2,11 @@ from ..BlockHolder import BlockHolder;
 
 
 class BlockInstance(BlockHolder):
-    def __init__(self, proj, block, kwargs):
+    def __init__(self, proj, block, args, kwargs):
         self.project = proj;
-        self.children = {};
         self.block = block;
-        self.args = kwargs;
+
+        self.kwargs = kwargs;
+        self.args = args;
         
         self.id = id(8);

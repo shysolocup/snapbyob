@@ -51,14 +51,7 @@ class Project:
         arglen = len(args);
         kwarglen = len(kwargs);
 
-        if arglen > 0 and kwarglen > 0:
-            return t(self, *args, **kwargs);
-    
-        elif arglen > 0 and kwarglen <= 0:
-            return t(self, *args);
-    
-        elif arglen <= 0 and kwarglen > 0:
-            return t(self, **kwargs);
+        return t(self, *args, **kwargs);
 
 
 
@@ -68,21 +61,10 @@ class Project:
 
         arglen = len(args);
         kwarglen = len(kwargs);
-        
-        if arglen > 0 and kwarglen > 0:
-            stuff = t(self, *args, **kwargs);
-            await self.events['new'].Fire(self, stuff); # Project, Any
-            return stuff
-        
-        elif arglen > 0 and kwarglen <= 0:
-            stuff = t(self, *args);
-            await self.events['new'].Fire(self, stuff); # Project, Any
-            return stuff
-        
-        elif arglen <= 0 and kwarglen > 0:
-            stuff = t(self, **kwargs);
-            await self.events['new'].Fire(self, stuff); # Project, Any
-            return stuff
+
+        stuff = t(self, *args, **kwargs);
+        await self.events['new'].Fire(self, stuff); # Project, Any
+        return stuff
 
 
     def __init__(self, *args):
@@ -99,7 +81,7 @@ class Project:
         def blockCat(makerArgs):
             category = makerArgs.get("category")
 
-            if type(category) == str and not self.blocks.get("category"):
+            if type(category) == str and not self.blocks.get(category):
                 self.blocks[category] = {};
                 makerArgs["category"] = self.blocks[category];
         
@@ -116,7 +98,7 @@ class Project:
             blockCat(kwargs),
             blockName(kwargs, callback),
             kwargs.__setitem__("f", callback),
-            self.discretenew(Block, kwargs=kwargs, args=args)
+            self.discretenew(Block, args=args, kwargs=kwargs)
         );
     
         self.BlockMaker = BlockMaker;
