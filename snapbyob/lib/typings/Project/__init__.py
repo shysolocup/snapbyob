@@ -17,13 +17,12 @@ class Project:
 
     @name.setter
     def name(self, v):
-        
-        asyncio.run(self.events["projectNameChanged"].Fire());
+        asyncio.run(self.events["projectNameChanged"].Fire(self, self.data["project"]["@name"], v)); # Project, oldName, newName
         self.data["project"]["@name"] = v
 
 
     async def ping(self):
-        await self.events['ping'].Fire(self, pingtime());
+        await self.events['ping'].Fire(self, pingtime()); # Project, pingtime
 
 
     def discretenew(self, t, **args):
@@ -40,7 +39,7 @@ class Project:
         
         stuff = t(self, args);
 
-        await self.events['new'].Fire(self, stuff);
+        await self.events['new'].Fire(self, stuff); # Project, Any
         return stuff
 
 
@@ -55,9 +54,8 @@ class Project:
 
         self.blocks = {
             'motion': {
-                'move': self.discretenew(Block, f=lambda x, y : (
-                    print(x),
-                    print(y)
+                'move': self.discretenew(Block, f=lambda **args : (
+                    'x'    
                 ))
             }
         };

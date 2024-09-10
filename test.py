@@ -9,9 +9,16 @@ proj = Project({
 });
 
 
+@proj.on("blockPlaced")
+async def sdjfdsjl(self, block):
+    print(block.ref);
+
+
 @proj.on("ping")
 async def stuff(self, time):
     print(self, time);
+
+    await proj.scripts.insert('motion.move', x=50, y=50);
 
 
 async def test():

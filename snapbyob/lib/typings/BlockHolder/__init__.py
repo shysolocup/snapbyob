@@ -1,7 +1,6 @@
-from ....lib.methods.insertBlock import insertBlock
-
 class BlockHolder:
-    async def insert(self, *args):
-        await self.project.events["blockPlaced"].Fire();
-
-        return await insertBlock(self, args);
+    async def insert(self, ref, **args):
+        from ....lib.methods.insertBlock import insertBlock
+        block = await insertBlock(self, ref, args);
+        await self.project.events["blockPlaced"].Fire(self, block);
+        return block
