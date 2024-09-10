@@ -16,10 +16,16 @@ class Children:
         return list(self.__dict__.items())[-1];
 
     def getByName(self, k):
-        return exec('self.{0}'.format(k));
+        for name, child in self.__dict__.items():
+            name = name.split("_")[1]
+            if name == k:
+                return child;
 
     def getById(self, i):
-        return exec('self.{0}'.format(i));
+        for name, child in self.__dict__.items():
+            name = name.split("_")[2]
+            if name == i:
+                return child;
 
     def set(self, k, v):
         return exec('self.{0} = v'.format(k));

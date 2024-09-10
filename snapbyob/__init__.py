@@ -1,10 +1,4 @@
 import os;
-
-
-import xml.etree.ElementTree as ET;
-import xmltodict as xml;
-
-
 from .lib.methods.formFiles import formFiles
 
 
@@ -30,13 +24,3 @@ Typings = NewTypings();
 for n, d in rawtypes.items():
     exec('from {d} import {n}'.format(d=d, n=n));
     exec('Typings.{n} = {n}'.format(d=d, n=n));
-    
-
-
-# print(stuff);
-
-# print(typings);
-
-
-# Types = typings;
-Instances = {};

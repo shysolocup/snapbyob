@@ -10,17 +10,14 @@ proj = Project({
 
 
 @proj.on("blockPlaced")
-async def sdjfdsjl(self, ctx):
-    print(ctx.args, ctx.kwargs);
+async def test(self, ctx):
+    ctx.callback(ctx, *ctx.args, **ctx.kwargs);
 
 
 @proj.on("ping")
-async def stuff(self, time):
+async def test(self, time):
     block = await proj.scripts.insert('motion.move', x=10, y=10);
     await block.insert('motion.changeXBy', 5);
-
-    print(proj.scripts.children.list);
-    print(block.children.list);
 
 
 async def test():
