@@ -10,8 +10,8 @@ proj = Project({
 
 
 @proj.on("blockPlaced")
-async def sdjfdsjl(self, block):
-    print(block.ref);
+async def sdjfdsjl(self, ctx):
+    print(ctx.block);
 
 
 @proj.on("ping")

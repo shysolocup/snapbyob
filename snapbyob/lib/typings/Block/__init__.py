@@ -6,16 +6,19 @@ from ..BlockHolder import BlockHolder
 class Block(BlockHolder):
 
     def __init__(self, proj, args):
+
         self.project = proj;
         self.children = {};
         self.id = id(8);
 
         self.name = args.get("name");
         self.category = args.get("category");
-        self.function = args.get("f");
+        self.callback = args.get("f");
         self.parent = args.get("p");
 
         self.id = id(8);
+
+        self.category[self.name] = self;
         
         if not self.name:
             self.name = self.id;

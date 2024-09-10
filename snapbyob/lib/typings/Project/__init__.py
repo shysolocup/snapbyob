@@ -29,15 +29,14 @@ class Project:
         if type(t) == str:
             t = globals()[t];
         
-        return t(self, args);
+        return t(self, **args);
 
 
     async def new(self, t, **args):
-
         if type(t) == str:
             t = globals()[t];
         
-        stuff = t(self, args);
+        stuff = t(self, **args);
 
         await self.events['new'].Fire(self, stuff); # Project, Any
         return stuff
@@ -48,17 +47,26 @@ class Project:
         options = args[0];
 
         self.events = {};
-        self.blocks = {};
-
         self.scripts = Scripts(self);
 
+
         self.blocks = {
-            'motion': {
-                'move': self.discretenew(Block, f=lambda **args : (
-                    'x'    
-                ))
-            }
+            'motion': {}
         };
+
+        def BlockMaker(**makerArgs): return lambda callback: (
+            makerArgs.__setitem__("f", callback),
+            makerArgs.__setitem__('name', callback.__name__),
+            self.discretenew(Block, args=makerArgs)
+        );
+    
+        self.BlockMaker = BlockMaker;
+
+
+        @BlockMaker(category=self.blocks['motion'])
+        def move(self, x, y):
+            print(x, y);
+
 
         self.events = {
             # misc
