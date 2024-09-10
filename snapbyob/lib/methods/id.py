@@ -1,10 +1,21 @@
 import random
 
-def id(length):
-    random.seed(length);
-    thing = random.random();
+def id(length, cache):
+    def gen():
+        random.seed(length);
+        thing = random.random();
+        
+        for i in range(length):
+            thing = thing*10;
+    
+        return str(round(thing));
 
-    for i in range(length):
-        thing = thing*10;
+    g = gen();
 
-    return str(round(thing));
+    while cache.get(g):
+        g = gen();
+    
+        if not cache.get(g):
+            return g;
+
+    return g;

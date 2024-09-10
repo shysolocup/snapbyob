@@ -8,8 +8,7 @@ class Block(BlockHolder):
     def __init__(self, proj, args, kwargs):
 
         self.project = proj;
-        self.children = {};
-        self.id = id(8);
+        self.id = id(8, proj.idcache);
 
         self.args = args;
         self.kwargs = kwargs;
@@ -19,7 +18,7 @@ class Block(BlockHolder):
         self.callback = kwargs.get("f");
         self.parent = kwargs.get("p");
 
-        self.id = id(8);
+        self.id = id(8, proj.idcache);
 
         if type(self.category) == str:
             self.category = self.project.blocks[self.category];

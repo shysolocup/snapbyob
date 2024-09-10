@@ -16,8 +16,11 @@ async def sdjfdsjl(self, ctx):
 
 @proj.on("ping")
 async def stuff(self, time):
-    await proj.scripts.insert('motion.move', x=10, y=10);
-    await proj.scripts.insert('motion.changeXBy', 5);
+    block = await proj.scripts.insert('motion.move', x=10, y=10);
+    await block.insert('motion.changeXBy', 5);
+
+    print(proj.scripts.children.list);
+    print(block.children.list);
 
 
 async def test():

@@ -7,7 +7,7 @@ class Event:
         self.name = kwargs.get('name');
         self.parent = kwargs.get('parent');
 
-        self.id = id(8);
+        self.id = id(8, proj.idcache);
         self.listeners = [];
         self.project = proj;
 

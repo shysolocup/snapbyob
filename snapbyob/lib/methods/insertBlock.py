@@ -33,4 +33,6 @@ async def insertBlock(self, ref, args, kwargs):
         inst.ref = reflist;
         inst.refstring = ref;
 
+        self.children.new(block)
+
         return inst;

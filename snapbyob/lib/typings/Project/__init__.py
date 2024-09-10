@@ -74,6 +74,7 @@ class Project:
         self.events = {};
         self.scripts = Scripts(self);
 
+        self.idcache = {};
 
         self.blocks = {};
 
@@ -138,7 +139,7 @@ class Project:
         if not options:
             options = {};
 
-        projId = id(8);
+        projId = id(8, self.idcache);
         projName = options.get('name');
 
         if not projName:
