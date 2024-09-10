@@ -4,9 +4,7 @@ async def insertBlock(self, ref, args):
         global block
         block = self.project.blocks;
         reflist = [ block ];
-
-        print(args);
-
+        
 
         if type(ref) == str:
             refs = ref.split(".");
@@ -31,7 +29,7 @@ async def insertBlock(self, ref, args):
         
         block = reflist[-1];
         
-        inst = await self.project.new(BlockInstance, block=block);
+        inst = await self.project.new(BlockInstance, block=block, args=args);
         inst.ref = reflist;
         inst.refstring = ref;
 
