@@ -69,7 +69,7 @@ class Project:
 
     @name.setter
     def name(self, v):
-        asyncio.run(self.events["projectNameChanged"].Fire(self, self.data["project"]["@name"], v)); # Project, oldName, newName
+        asyncio.run(self.events["project"]["nameChanged"].Fire(self, self.data["project"]["@name"], v)); # Project, oldName, newName
         self.data["project"]["@name"] = v
 
 
@@ -149,23 +149,60 @@ class Project:
             'new': self.discretenew(Event),
 
             # project
-            'projectNameChanged': self.discretenew(Event),
-            'projectUpdated': self.discretenew(Event),
+            'project': {
+                'renamed': self.discretenew(Event),
+                'updated': self.discretenew(Event)
+            },
             
             # events
-            'eventCreated': self.discretenew(Event),
-            'eventDestroyed': self.discretenew(Event),
-            'eventUpdated': self.discretenew(Event),
+            'event': {
+                'created': self.discretenew(Event),
+                'destroyed': self.discretenew(Event),
+                'updated': self.discretenew(Event),
+            },
 
             # blocks
-            'blockPlaced': self.discretenew(Event),
-            'blockCreated': self.discretenew(Event),
-            'blockDestroyed': self.discretenew(Event),
-            'blockUpdated': self.discretenew(Event)
+            'block': {
+                'placed': self.discretenew(Event),
+                'created': self.discretenew(Event),
+                'destroyed': self.discretenew(Event),
+                'updated': self.discretenew(Event),
+            },
         }
 
+
+        def actuallyDoEventStuff(ref, callback):
+            global event
+            event = self.events;
+            reflist = [ event ];
+
+            if type(ref) == str:
+                refs = ref.split(".");
+                for r in refs:
+                    # print(event, r);
+                    try:
+                        event = event[r];
+                        reflist.append(event);
+                    except:
+                        event = exec('event.{0}'.format(r));
+                        reflist.append(event);
+            
+
+            elif type(ref) == list:
+                refs = ref;
+                for r in refs:
+                    try:
+                        event = event[r];
+                        reflist.append(event);
+                    except:
+                        e = exec('event.{0}'.format(r));
+                        reflist.append(event);
+            
+            event = reflist[-1];
+            event.Listen(callback);
+
         def EventHandle(event):
-            return lambda callback : self.events[event].Listen(callback);
+            return lambda callback : actuallyDoEventStuff(event, callback)
         
         self.EventHandle = EventHandle;
         self.on = EventHandle;

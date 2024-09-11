@@ -32,8 +32,8 @@ class Block(BlockHolder):
             if not self.parent.blocks:
                 self.parent.blocks = { self.name: self };
             
-            if not self.parent.events.get(self.category):
-                self.parent.events[self.category] = {};
+            if not self.parent.blocks.get(self.category):
+                self.parent.blocks[self.category] = {};
         
-            if not self.parent.events.get(self.name):
-                self.parent.events[self.name] = self;
+            if not self.parent.blocks.get(self.name):
+                self.parent.blocks[self.name] = self;

@@ -1,19 +1,30 @@
 ```py
 
-from snapbyob import Project, Block, BlockInstance
-import asyncio
+from snapbyob import Project, Enum;
+import asyncio;
 
-proj  = Project();
 
-@proj.on
-def blockPlaced(self, block):
-	print(block);
+print(Enum.keycode.a);
+
+
+proj = Project({
+    "name": "very cool"
+});
+
+
+@proj.on("block.placed")
+async def test(self, ctx):
+    ctx.callback(ctx, *ctx.args, **ctx.kwargs);
+
+
+@proj.on("ping")
+async def test(self, time):
+    block = await proj.scripts.insert('motion.move', x=10, y=10);
+    await block.insert('motion.changeXBy', 5);
+
 
 async def test():
-	block = await proj.scripts.insert(“motion.move”, x=10, y=10)
-	await block.insert(“motion.move”, x=10, y=10, p=block)
-
-asyncio.run(test());
+    await proj.ping();
 
 
 ```

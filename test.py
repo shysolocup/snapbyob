@@ -1,10 +1,8 @@
-from snapbyob import Project, Keycode;
-import xmltodict as xml;
+from snapbyob import Project, Enum;
 import asyncio;
-import json;
 
 
-print(Keycode);
+print(Enum.keycode.a);
 
 
 proj = Project({
@@ -12,7 +10,7 @@ proj = Project({
 });
 
 
-@proj.on("blockPlaced")
+@proj.on("block.placed")
 async def test(self, ctx):
     ctx.callback(ctx, *ctx.args, **ctx.kwargs);
 
