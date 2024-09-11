@@ -8,6 +8,7 @@ from ....lib.methods.formFiles import formFiles;
 
 import asyncio;
 import time;
+import copy;
 import os;
 
 dirstring = os.path.realpath(__file__).replace("__init__.py", "");
@@ -17,12 +18,45 @@ drive, sep, path = splitpath;
 separated = path.split(sep);
 separated.pop(); separated.pop(); separated.pop(); separated.pop();
 
-rawblocks = formFiles(drive, sep, separated, '....', [ 'lib', 'blocks' ]);
+ref = '.';
+ext = [ 'lib', 'blocks' ];
+d = copy.copy(separated);
+
+for e in ext:
+    d.append(e);
+
+adir = '{drive}{sep}{path}'.format(drive=drive, sep=sep, path=sep.join(list(d)));
+
+print(adir);
+
+
+rawblocks = {};
+
+
+def merge(x, y):
+    z = copy.copy(x)   # start with keys and values of x
+    z.update(y)    # modifies z with keys and values of y
+    return z
+
+
+for file in os.listdir(adir):
+    if not file.startswith("__") and not file.endswith("__"):
+        filename = os.fsdecode(file);
+
+        ext2 = copy.copy(ext);
+        ext2.insert(len(ext2), filename);
+
+        stuff = formFiles(drive, sep, separated, ref, [ 'lib', 'blocks', filename ]);
+
+        for k, v in stuff.items():
+            rawblocks[k] = "..."+v;
+
+
 rawblockdata = {};
 
-for n, d in rawblocks.items():
-    impstring = 'from {d} import blockdata, callback'.format(d=d, n=n);
-    formstring = 'rawblockdata[n] = { "blockdata": blockdata, "callback": callback }';
+for blockn, blockd in rawblocks.items():
+    impstring = 'from {blockd} import blockdata, callback'.format(blockd=blockd);
+    formstring = 'rawblockdata[blockn] = { "blockdata": blockdata, "callback": callback }';
     exec(impstring);
     exec(formstring)
 
@@ -39,8 +73,8 @@ class Project:
         self.data["project"]["@name"] = v
 
 
-    async def ping(self):
-        await self.events['ping'].Fire(self, pingtime()); # Project, pingtime
+    async def ping(self, *args, **kwargs):
+        await self.events['ping'].Fire(self, pingtime(), *args, **kwargs); # Project, pingtime, ...
 
 
     def discretenew(self, t, *args, **kwargs):
