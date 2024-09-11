@@ -6,11 +6,12 @@ class BlockInstance(BlockHolder):
         self.project = proj;
         self.block = block;
 
-        extendees = {
+        extendees = [
             "name",
             "category",
-            "callback"
-        };
+            "callback",
+            "parent"
+        ];
 
         for e in extendees:
             exec('self.{0} = self.block.{0}'.format(e));
