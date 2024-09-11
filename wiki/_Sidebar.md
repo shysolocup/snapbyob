@@ -1,4 +1,4 @@
-# classjs docs
+# snapbyob docs
 ### [Home](https://github.com/shysolocup/snapbyob/wiki)
 
 <details>
@@ -302,6 +302,32 @@
 > <tr> <td> 
 >
 > <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.last) last </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+  
+<br>
+
+</details>
+
+<details>
+
+<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Enum">🛈</a> Enum </b> </summary>
+
+<br>
+
+> <table> <tr> <td> 
+>
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.keycode) keycode </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.mouseInteraction) mouseInteraction </b>
 >
 > </tr> </td> 
 
