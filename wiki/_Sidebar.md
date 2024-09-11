@@ -1,11 +1,11 @@
 # classjs docs
 ### [Home](https://github.com/shysolocup/snapbyob/wiki)
 
-<br>
-
 <details>
 
 <summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Project">🛈</a> Project </b> </summary>
+
+<br>
 
 > <table> <tr> <td> 
 >
@@ -83,11 +83,15 @@
 
 > </tr> </td> </table>
   
+<br>
+
 </details>
 
 <details>
 
 <summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Block">🛈</a> Block </b> </summary>
+
+<br>
 
 > <table> <tr> <td> 
 >
@@ -147,11 +151,15 @@
 
 > </tr> </td> </table>
   
+<br>
+
 </details>
 
 <details>
 
 <summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/BlockInstance">🛈</a> BlockInstance </b> </summary>
+
+<br>
 
 > <table> <tr> <td> 
 >
@@ -217,6 +225,90 @@
 
 > </tr> </td> </table>
   
+<br>
+
+</details>
+
+<details>
+
+<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/BlockHolder">🛈</a> BlockHolder </b> </summary>
+
+<br>
+
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/BlockHolder.insert()) insert() </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/BlockInstance.children) children </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+  
+<br>
+
+</details>
+
+<details>
+
+<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Children">🛈</a> Children </b> </summary>
+
+<br>
+
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.getByName()) getByName() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.getById()) getById() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.set()) set() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.new()) new() </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.list) list </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.first) first </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.last) last </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+  
+<br>
+
 </details>
 
 <br>

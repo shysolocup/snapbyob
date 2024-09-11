@@ -3,6 +3,8 @@ center reference point for the Snap! (Build Your Own Blocks) framework
 
 <img height=22 src="https://github.com/shysolocup/snapbyob/actions/workflows/publish-wiki.yml/badge.svg" alt="if this shows up something's wrong with the workflow">
 
+<br>
+
 ```py
 from snapbyob import Project, Enum
 import asyncio;
