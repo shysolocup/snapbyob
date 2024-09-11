@@ -337,4 +337,66 @@
 
 </details>
 
+<details>
+
+<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Event">🛈</a> Event </b> </summary>
+
+<br>
+
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.Listen()) Listen() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.Fire()) Fire() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.FireSync()) FireSync() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.set()) set() </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.new()) new() </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.list) list </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.first) first </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.last) last </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+  
+<br>
+
+</details>
+
 <br>
