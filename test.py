@@ -1,7 +1,10 @@
-from snapbyob import Project;
+from snapbyob import Project, Keycode;
 import xmltodict as xml;
 import asyncio;
 import json;
+
+
+print(Keycode);
 
 
 proj = Project({

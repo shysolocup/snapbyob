@@ -3,6 +3,5 @@ blockdata = {
     'category': 'motion',
 }
 
-def callback(self, **kwargs):
-    r = kwargs.get("r");
+def callback(self, r: int):
     print(r);
