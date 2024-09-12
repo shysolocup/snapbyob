@@ -37,6 +37,7 @@ class BlockHolder:
                 args = [args];
 
             inst = await insertBlock(self, name, args, kwargs);
+            await self.project.events["block"]["placed"].Fire(self, inst);
             stuff.insert(i, inst);
 
             if children:
