@@ -11,14 +11,24 @@ proj = Project({
 async def test(self, ctx):
     ctx = ctx.args[0];
 
-    print(ctx == Enum.context.all);
-    print(ctx == Enum.context.thisScript);
-    print(ctx == Enum.context);
-
 
 @proj.on("ping")
 async def test(self, time):
-    await proj.scripts.insert('control.stop', Enum.context.all);
+    stuff = await proj.scripts.insertGroup([
+        
+        { 'name': "control.ifX", 'args': [ True ], 'children': [
+            {'name': "motion.move", 'args': { 'x': 5, 'y': 5 } }
+        ]},
+
+        { 'name': "control.stop", 'args': Enum.context.all }
+    
+    ]);
+
+    theReal = stuff[0];
+
+    print(theReal.children.list);
+
+
 
 
 async def test():
