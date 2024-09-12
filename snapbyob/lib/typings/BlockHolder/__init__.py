@@ -25,16 +25,24 @@ class BlockHolder:
             args = args if args else [];
             kwargs = kwargs if kwargs else {};
 
+            if type(args) == tuple:
+                args = list(args);
+
             if type(args) == dict:
                 for k, v in args.items():
                     kwargs[k] = v;
+                    args = tuple([]);
     
-            if type(kwargs) == list or type(args) == tuple:
+            if type(kwargs) == list or type(kwargs) == tuple:
                 for i, v in enumerate(kwargs):
                     args.insert(i, v);
+                    kwargs = {};
 
             if type(args) != list and type(args) != tuple:
-                args = [args];
+                args = tuple([args]);
+            
+            if type(args) == list:
+                args = tuple(args);
 
             inst = await insertBlock(self, name, args, kwargs);
             await self.project.events["block"]["placed"].Fire(self, inst);

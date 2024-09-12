@@ -9,12 +9,12 @@ proj = Project({
 
 @proj.on("block.placed")
 async def test(self, ctx):
-    ctx = ctx.args[0];
+    print(ctx.args)
 
 
 @proj.on("ping")
 async def test(self, time):
-    stuff = await proj.scripts.insertGroup([
+    await proj.scripts.insertGroup([
         
         { 'name': "control.ifX", 'args': [ True ], 'children': [
             {'name': "motion.move", 'args': { 'x': 5, 'y': 5 } }
@@ -23,10 +23,6 @@ async def test(self, time):
         { 'name': "control.stop", 'args': Enum.context.all }
     
     ]);
-
-    theReal = stuff[0];
-
-    print(theReal.children.list);
 
 
 
