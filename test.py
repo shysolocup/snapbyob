@@ -7,24 +7,19 @@ proj = Project({
 });
 
 
+@proj.BlockMaker(category="test")
+def test(self, x, y):
+    print(x, y);
+
+
 @proj.on("block.placed")
 async def test(self, ctx):
-    print(ctx.args)
+    ctx.callback(self, *ctx.args, **ctx.kwargs);
 
 
 @proj.on("ping")
 async def test(self, time):
-    await proj.scripts.insertGroup([
-        
-        { 'name': "control.ifX", 'args': [ True ], 'children': [
-            {'name': "motion.move", 'args': { 'x': 5, 'y': 5 } }
-        ]},
-
-        { 'name': "control.stop", 'args': Enum.context.all }
-    
-    ]);
-
-
+    await proj.scripts.insert("test.test", x=10, y=10);
 
 
 async def test():

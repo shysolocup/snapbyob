@@ -88,19 +88,6 @@ class Project:
         return t(self, *args, **kwargs);
 
 
-
-    async def new(self, t, *args, **kwargs):
-        if type(t) == str:
-            t = globals()[t];
-
-        arglen = len(args);
-        kwarglen = len(kwargs);
-
-        stuff = t(self, *args, **kwargs);
-        await self.events['new'].Fire(self, stuff); # Project, Any
-        return stuff
-
-
     def __init__(self, *args):
 
         options = args[0];
@@ -112,35 +99,8 @@ class Project:
 
         self.blocks = {};
 
-
-        def blockCat(makerArgs):
-            category = makerArgs.get("category")
-
-            if type(category) == str and not self.blocks.get(category):
-                self.blocks[category] = {};
-                makerArgs["category"] = self.blocks[category];
-        
-            elif type(category) == str and self.blocks.get("category"):
-                makerArgs["category"] = self.blocks[category];
-
-        
-        def blockName(makerArgs, callback):
-            if not makerArgs.get("name"):
-                makerArgs.__setitem__('name', callback.__name__);
-            
-
-        def BlockMaker(*args, **kwargs): return lambda callback: (
-            blockCat(kwargs),
-            blockName(kwargs, callback),
-            kwargs.__setitem__("f", callback),
-            self.discretenew(Block, args=args, kwargs=kwargs)
-        );
-    
-        self.BlockMaker = BlockMaker;
-
-
         for k, data in rawblockdata.items():
-            BlockMaker(name=data["blockdata"]["name"], category=data["blockdata"]["category"])(data["callback"]);
+            self.BlockMaker(name=data["blockdata"]["name"], category=data["blockdata"]["category"])(data["callback"]);
 
 
         self.events = {
@@ -170,39 +130,8 @@ class Project:
             },
         }
 
-
-        def actuallyDoEventStuff(ref, callback):
-            global event
-            event = self.events;
-            reflist = [ event ];
-
-            if type(ref) == str:
-                refs = ref.split(".");
-                for r in refs:
-                    # print(event, r);
-                    try:
-                        event = event[r];
-                        reflist.append(event);
-                    except:
-                        event = exec('event.{0}'.format(r));
-                        reflist.append(event);
-            
-
-            elif type(ref) == list:
-                refs = ref;
-                for r in refs:
-                    try:
-                        event = event[r];
-                        reflist.append(event);
-                    except:
-                        e = exec('event.{0}'.format(r));
-                        reflist.append(event);
-            
-            event = reflist[-1];
-            event.Listen(callback);
-
         def EventHandle(event):
-            return lambda callback : actuallyDoEventStuff(event, callback)
+            return lambda callback : self.actuallyDoEventStuff(event, callback)
         
         self.EventHandle = EventHandle;
         self.on = EventHandle;
@@ -240,3 +169,69 @@ class Project:
         '''with open(projName+".xml", "w") as file:
             file.write("");
             self.file = file;'''
+
+
+    def blockCat(self, makerArgs):
+            category = makerArgs.get("category")
+
+            if type(category) == str and not self.blocks.get(category):
+                self.blocks[category] = {};
+                makerArgs["category"] = self.blocks[category];
+        
+            elif type(category) == str and self.blocks.get("category"):
+                makerArgs["category"] = self.blocks[category];
+
+        
+    def blockName(self, makerArgs, callback):
+        if not makerArgs.get("name"):
+            makerArgs.__setitem__('name', callback.__name__);
+        
+
+    def BlockMaker(self, *args, **kwargs): return lambda callback: (
+        self.blockCat(kwargs),
+        self.blockName(kwargs, callback),
+        kwargs.__setitem__("f", callback),
+        self.discretenew(Block, args=args, kwargs=kwargs)
+    );
+
+    async def new(self, t, *args, **kwargs):
+        if type(t) == str:
+            t = globals()[t];
+
+        arglen = len(args);
+        kwarglen = len(kwargs);
+
+        stuff = t(self, *args, **kwargs);
+        await self.events['new'].Fire(self, stuff); # Project, Any
+        return stuff
+
+
+    def actuallyDoEventStuff(self, ref, callback):
+        global event
+        event = self.events;
+        reflist = [ event ];
+
+        if type(ref) == str:
+            refs = ref.split(".");
+            for r in refs:
+                # print(event, r);
+                try:
+                    event = event[r];
+                    reflist.append(event);
+                except:
+                    event = exec('event.{0}'.format(r));
+                    reflist.append(event);
+        
+
+        elif type(ref) == list:
+            refs = ref;
+            for r in refs:
+                try:
+                    event = event[r];
+                    reflist.append(event);
+                except:
+                    e = exec('event.{0}'.format(r));
+                    reflist.append(event);
+        
+        event = reflist[-1];
+        event.Listen(callback);
