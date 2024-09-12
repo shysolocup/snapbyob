@@ -2,9 +2,6 @@ from snapbyob import Project, Enum;
 import asyncio;
 
 
-print(Enum.keycode.a);
-
-
 proj = Project({
     "name": "very cool"
 });
@@ -12,13 +9,16 @@ proj = Project({
 
 @proj.on("block.placed")
 async def test(self, ctx):
-    ctx.callback(ctx, *ctx.args, **ctx.kwargs);
+    ctx = ctx.args[0];
+
+    print(ctx == Enum.context.all);
+    print(ctx == Enum.context.thisScript);
+    print(ctx == Enum.context);
 
 
 @proj.on("ping")
 async def test(self, time):
-    block = await proj.scripts.insert('motion.move', x=10, y=10);
-    await block.insert('motion.changeXBy', 5);
+    await proj.scripts.insert('control.stop', Enum.context.all);
 
 
 async def test():

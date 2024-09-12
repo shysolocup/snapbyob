@@ -6,4 +6,4 @@ blockdata = {
 }
 
 def callback(self, t:str | TimeConv | int):
-    print(a);
+    print(t);

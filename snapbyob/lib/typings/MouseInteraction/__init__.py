@@ -1,10 +1,8 @@
 from ..EnumItem import EnumItem;
+from ..EnumBaby import EnumBaby;
 
-
-class MouseInteractionItem:
-    def __init__(self, value, id):
-        self.id = id;
-        self.value = value;
+class MouseInteractionItem(EnumBaby):
+    pass
 
 
 class EnumMouseInteraction(EnumItem):

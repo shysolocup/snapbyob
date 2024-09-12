@@ -1,10 +1,8 @@
 from ..EnumItem import EnumItem;
+from ..EnumBaby import EnumBaby;
 
-
-class Key:
-    def __init__(self, value, id):
-        self.id = id;
-        self.value = value;
+class Key(EnumBaby):
+    pass
 
 
 class EnumKeycode(EnumItem):
