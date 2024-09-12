@@ -313,32 +313,6 @@
 
 <details>
 
-<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Enum">🛈</a> Enum </b> </summary>
-
-<br>
-
-> <table> <tr> <td> 
->
-> <table> <tr> <td> 
->
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.keycode) keycode </b>
->
-> </tr> </td> 
-
-> <tr> <td> 
->
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.mouseInteraction) mouseInteraction </b>
->
-> </tr> </td> 
-
-> </tr> </td> </table>
-  
-<br>
-
-</details>
-
-<details>
-
 <summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Event">🛈</a> Event </b> </summary>
 
 <br>
@@ -359,17 +333,73 @@
 >
 > <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.FireSync()) FireSync() </b>
 >
+> </tr> </td>
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.name) name </b>
+>
 > </tr> </td> 
 
 > <tr> <td> 
 >
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.set()) set() </b>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.category) category </b>
 >
 > </tr> </td> 
 
 > <tr> <td> 
 >
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.new()) new() </b>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.parent) parent </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.id) id </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.listeners) listeners </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.project) project </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.args) args </b>
+>
+> </tr> </td> 
+
+> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Event.kwargs) kwargs </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+  
+<br>
+
+</details>
+
+<details>
+
+<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Enum">🛈</a> Enum </b> </summary>
+
+<br>
+
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.placeholder()) placeholder() </b>
 >
 > </tr> </td> 
 
@@ -377,19 +407,13 @@
 >
 > <table> <tr> <td> 
 >
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.list) list </b>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.keycode) keycode </b>
 >
 > </tr> </td> 
 
 > <tr> <td> 
 >
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.first) first </b>
->
-> </tr> </td> 
-
-> <tr> <td> 
->
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Children.last) last </b>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/Enum.mouseInteraction) mouseInteraction </b>
 >
 > </tr> </td> 
 

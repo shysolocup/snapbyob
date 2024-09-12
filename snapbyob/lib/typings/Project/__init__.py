@@ -145,28 +145,28 @@ class Project:
 
         self.events = {
             # misc
-            'ping': self.discretenew(Event),
-            'new': self.discretenew(Event),
+            'ping': self.discretenew(Event, category=""),
+            'new': self.discretenew(Event, category=""),
 
             # project
             'project': {
-                'renamed': self.discretenew(Event),
-                'updated': self.discretenew(Event)
+                'renamed': self.discretenew(Event, category="project"),
+                'updated': self.discretenew(Event, category="project")
             },
             
             # events
             'event': {
-                'created': self.discretenew(Event),
-                'destroyed': self.discretenew(Event),
-                'updated': self.discretenew(Event),
+                'created': self.discretenew(Event, category="event"),
+                'destroyed': self.discretenew(Event, category="event"),
+                'updated': self.discretenew(Event, category="event"),
             },
 
             # blocks
             'block': {
-                'placed': self.discretenew(Event),
-                'created': self.discretenew(Event),
-                'destroyed': self.discretenew(Event),
-                'updated': self.discretenew(Event),
+                'placed': self.discretenew(Event, category="block"),
+                'created': self.discretenew(Event, category="block"),
+                'destroyed': self.discretenew(Event, category="block"),
+                'updated': self.discretenew(Event, category="block"),
             },
         }
 
