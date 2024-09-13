@@ -5,12 +5,42 @@ on:
     paths:
       - wiki/**
       - .github/workflows/publish-wiki.yml
+      - wikiscripts/**
+
 concurrency:
   group: publish-wiki
   cancel-in-progress: true
+
 permissions:
   contents: write
+
 jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./wikiscripts
+        
+    steps:
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4  
+
+      - name: Install packages  
+        run: npm i
+      
+      - name: Make the script files executable
+        run: chmod u+x sidebar.js
+
+
+      - name: Config Github
+        run: |
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ github.event.pusher.email }}
+      
+      - name: Run the scripts
+        run: node ./sidebar.js --username=${{ github.actor }} --useremail=${{ github.event.pusher.email }} --commitmsg=${{ github.event.head_commit.message }}
+
   publish-wiki:
     runs-on: ubuntu-latest
     steps:

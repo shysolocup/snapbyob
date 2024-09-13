@@ -429,4 +429,30 @@
 
 </details>
 
+<details>
+
+<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/EnumItem">🛈</a> EnumItem </b> </summary>
+
+<br>
+
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/EnumItem.placeholder()) placeholder() </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td> 
+>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/EnumItem.masked) masked </b>
+>
+> </tr> </td> 
+
+> </tr> </td> </table>
+  
+<br>
+
+</details>
+
 <br>

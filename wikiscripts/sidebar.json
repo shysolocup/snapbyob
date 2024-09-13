@@ -1,0 +1,22 @@
+{
+    "Project": {
+        "methods": [
+            "ping",
+            "on",
+            "new",
+            "discretenew",
+            "BlockMaker",
+            "EventHandle"
+        ],
+
+        "properties": [
+            "name",
+            "events",
+            "scripts",
+            "data",
+            "projVer",
+            "idcache"
+        ]
+
+    }
+}
