@@ -6,9 +6,6 @@ on:
       - wiki/**
       - .github/workflows/publish-wiki.yml
 
-    paths-ignore:
-      - wiki/_Sidebar.md
-
 concurrency:
   group: publish-wiki
   cancel-in-progress: true
