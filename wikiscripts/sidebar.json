@@ -37,5 +37,24 @@
             "kwargs"
         ]
 
+    },
+
+    "BlockInstance": {
+        "methods": [
+            [ "insert", "BlockHolder.insert()" ],
+            [ "insertGroup", "BlockHolder.insert()" ]
+        ],
+
+        "properties": [
+            "project",
+            "name",
+            "category",
+            "callback",
+            "parent",
+            "id",
+            "args",
+            "kwargs"
+        ]
+
     }
 }

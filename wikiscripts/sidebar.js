@@ -63,11 +63,17 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
 
   stuff.methods.forEach( (v, i) => {
     thing = (i == 0) ? "<table>" : "";
+    url = `${wiki}${n}.${v}()`;
+
+    if (v.constructor === Array) {
+      url = `${wiki}${v[1]}`;
+      v = v[0];
+    }
 
     let ext = [
       `> ${thing} <tr> <td>`, 
       ">",
-      `> <b> [🛈](${wiki}${n}.${v}()) ${v}() </b>`,
+      `> <b> [🛈](${url}) ${v}() </b>`,
       ">",
       "> </tr> </td>",
       ""
