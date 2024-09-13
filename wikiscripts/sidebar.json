@@ -70,5 +70,21 @@
             "children"
         ]
 
+    },
+
+    "Children": {
+        "methods": [
+            "getByName",
+            "getById",
+            "set",
+            "new"
+        ],
+
+        "properties": [
+            "list",
+            "first",
+            "last"
+        ]
+
     }
 }
