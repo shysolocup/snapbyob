@@ -72,7 +72,7 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
       "> </tr> </td>"
     ];
 
-    
+    ext.forEach( e => content.push(e) );
   });
 }
 
