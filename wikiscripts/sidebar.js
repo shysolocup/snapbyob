@@ -82,25 +82,33 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
     let ext = [
       `> ${thing} <tr> <td>`, 
       ">",
-      `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}()) ${v}() </b>`,
+      `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}) ${v} </b>`,
       ">",
       "> </tr> </td>",
       ""
     ];
 
     if (i == 0) {
-      [
-        "> </tr> </td> </table>",
-        ">"
-      ].forEach( e => ext.unshift(e));
+      [ ">", "> </tr> </td> </table>"].forEach( e => ext.unshift(e));
     }
  
     ext.forEach( e => content.push(e) );
   });
+
+  let end = [
+    "> </tr> </td> </table>",
+    "",
+    "<br>",
+    "",
+    "</details>",
+    ""
+  ];
+
+  end.forEach( e => content.push(e) );
 }
 
 
-console.log(content);
+console.log(content.join("\n"));
 
 
 /*groups.forEach((group, gi) => {

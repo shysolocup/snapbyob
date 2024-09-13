@@ -18,5 +18,24 @@
             "idcache"
         ]
 
+    },
+
+
+    "Block": {
+        "methods": [
+            "placeholder"
+        ],
+
+        "properties": [
+            "project",
+            "name",
+            "category",
+            "callback",
+            "parent",
+            "id",
+            "args",
+            "kwargs"
+        ]
+
     }
 }
