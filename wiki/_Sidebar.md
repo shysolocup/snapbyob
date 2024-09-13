@@ -154,4 +154,78 @@
 
 </details>
 
+<details>
+
+<summary> <b> <a href="/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance">🛈</a> BlockInstance </b> </summary>
+
+<br>
+
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockHolder.insert()) insert() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockHolder.insert()) insertGroup() </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.project) project </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.name) name </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.category) category </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.callback) callback </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.parent) parent </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.id) id </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.args) args </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.kwargs) kwargs </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+
+<br>
+
+</details>
+
 <br>
