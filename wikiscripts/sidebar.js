@@ -55,7 +55,7 @@ let basedir = __dirname.replace("wikiscripts", "");
 let logrefdir = `${basedir}wiki/_Sidebar.md`;
 
 let jsoncontent = require('./sidebar.json');
-let start = fs.readFileSync(`${__dirname}/sidebar_start.txt`);
+let start = fs.readFileSync(`${__dirname}/sidebar_start.txt`, 'utf8');
 
 console.log(start);
 
