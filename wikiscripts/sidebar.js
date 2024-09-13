@@ -47,13 +47,13 @@ let jsoncontent = require('./sidebar.json');
 let start = fs.readFileSync(`${__dirname}/sidebar_start.txt`, 'utf8');
 
 let content = start.split("\n");
-
+let wiki = `${basedir}/wiki/`
 
 for (let [n, stuff] of Object.entries(jsoncontent)) {
   let ext = [
     "<details>",
     "",
-    `<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/${n}">🛈</a> ${n} </b> </summary>`,
+    `<summary> <b> <a href="${wiki}${n}">🛈</a> ${n} </b> </summary>`,
     "",
     "<br>",
     ""
@@ -67,7 +67,7 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
     let ext = [
       `> ${thing} <tr> <td>`, 
       ">",
-      `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}()) ${v}() </b>`,
+      `> <b> [🛈](${wiki}${n}.${v}()) ${v}() </b>`,
       ">",
       "> </tr> </td>",
       ""
@@ -82,7 +82,7 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
     let ext = [
       `> ${thing} <tr> <td>`, 
       ">",
-      `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}) ${v} </b>`,
+      `> <b> [🛈](${wiki}${n}.${v}) ${v} </b>`,
       ">",
       "> </tr> </td>",
       ""
