@@ -69,9 +69,30 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
       ">",
       `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}()) ${v}() </b>`,
       ">",
-      "> </tr> </td>"
+      "> </tr> </td>",
+      ""
     ];
 
+    ext.forEach( e => content.push(e) );
+  });
+
+  stuff.properties.forEach( (v, i) => {
+    thing = (i == 0) ? "<table>" : "";
+
+    let ext = [
+      `> ${thing} <tr> <td>`, 
+      ">",
+      `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}()) ${v}() </b>`,
+      ">",
+      "> </tr> </td>",
+      ""
+    ];
+
+    if (i == 0) {
+      ext.unshift("> </tr> </td> </table>");
+      ext.unshift(">");
+    }
+ 
     ext.forEach( e => content.push(e) );
   });
 }
