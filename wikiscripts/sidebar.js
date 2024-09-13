@@ -111,7 +111,7 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
 content.push("<br>");
 
 
-console.log(content.join("\n"));
+content = content.join("\n");
 
 
 fs.writeFileSync(dir, content)
