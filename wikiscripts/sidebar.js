@@ -62,24 +62,17 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
   ext.forEach( e => content.push(e) );
 
   stuff.methods.forEach( (v, i) => {
+    thing = (i == 0) ? "<table>" : "";
+
     let ext = [
-      "> <tr> <td>", 
+      `> ${thing} <tr> <td>`, 
       ">",
       `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}()) ${v}() </b>`,
       ">",
       "> </tr> </td>"
     ];
 
-    if (i == 0) {
-      ext = [
-        "> <table> <tr> <td>", 
-        ">",
-        `> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/${n}.${v}()) ${v}() </b>`,
-        ">",
-        "> </tr> </td>",
-        "" 
-      ]
-    }
+    
   });
 }
 
