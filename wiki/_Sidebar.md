@@ -212,6 +212,12 @@
 
 >  <tr> <td>
 >
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.blockId) blockId </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
 > <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.args) args </b>
 >
 > </tr> </td>
@@ -219,6 +225,38 @@
 >  <tr> <td>
 >
 > <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockInstance.kwargs) kwargs </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+
+<br>
+
+</details>
+
+<details>
+
+<summary> <b> <a href="/home/runner/work/snapbyob/snapbyob//wiki/BlockHolder">🛈</a> BlockHolder </b> </summary>
+
+<br>
+
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockHolder.insert()) insert() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockHolder.insertGroup()) insertGroup() </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/BlockHolder.children) children </b>
 >
 > </tr> </td>
 
