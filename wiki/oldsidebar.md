@@ -251,7 +251,7 @@
 >
 > <table> <tr> <td> 
 >
-> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/BlockInstance.children) children </b>
+> <b> [🛈](https://github.com/shysolocup/snapbyob/wiki/BlockHolder.children) children </b>
 >
 > </tr> </td> 
 

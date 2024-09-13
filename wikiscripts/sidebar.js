@@ -62,8 +62,8 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
   ext.forEach( e => content.push(e) );
 
   stuff.methods.forEach( (v, i) => {
-    thing = (i == 0) ? "<table>" : "";
-    url = `${wiki}${n}.${v}()`;
+    var thing = (i == 0) ? "<table>" : "";
+    var url = `${wiki}${n}.${v}()`;
 
     if (v.constructor === Array) {
       url = `${wiki}${v[1]}`;

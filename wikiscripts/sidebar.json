@@ -52,8 +52,22 @@
             "callback",
             "parent",
             "id",
+            "blockId",
             "args",
             "kwargs"
+        ]
+
+    },
+
+
+    "BlockHolder": {
+        "methods": [
+            "insert",
+            "insertGroup"
+        ],
+
+        "properties": [
+            "children"
         ]
 
     }
