@@ -49,8 +49,7 @@ let start = fs.readFileSync(`${__dirname}/sidebar_start.txt`, 'utf8');
 let content = start.split("\n");
 
 
-jsoncontent.forEach((n) => {
-
+for (let [n, stuff] in Object.entries(jsoncontent)) {
   let ext = [
     "<details>",
     "",
@@ -61,7 +60,7 @@ jsoncontent.forEach((n) => {
   ];
 
   ext.forEach( e => content.push(e) );
-});
+}
 
 
 console.log(content);
