@@ -14,7 +14,7 @@ print(username, useremail, commitmsg, repolink);
 commands = [
     'echo os is running',  
     'git add {0}'.format(logrefdir),
-    'git commit -m "{0} & Refreshed logref.md" {1}'.format(commitmsg, logrefdir),
+    'git commit -m "{0} & Updated wiki" {1}'.format(commitmsg, logrefdir),
     'git push',
     'git status'
 ];
