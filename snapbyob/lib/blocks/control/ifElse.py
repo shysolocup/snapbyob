@@ -3,5 +3,13 @@ blockdata = {
     'category': 'control',
 }
 
-def callback(self, v:bool=None):
+callback = [];
+
+def ifX(self, v:bool=None):
     print(v);
+
+def ifElse(self):
+    print("else");
+
+callback.append(ifX);
+callback.append(ifElse);

@@ -7,19 +7,14 @@ proj = Project({
 });
 
 
-@proj.BlockMaker(category="test")
-def test(self, x, y):
-    print(x, y);
-
-
 @proj.on("block.placed")
 async def test(self, ctx):
-    ctx.callback(self, *ctx.args, **ctx.kwargs);
+    print(ctx.callback);
 
 
 @proj.on("ping")
 async def test(self, time):
-    await proj.scripts.insert("test.test", x=10, y=10);
+    await proj.scripts.insert("control.ifElse", True);
 
 
 async def test():
