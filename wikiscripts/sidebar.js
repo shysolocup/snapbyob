@@ -89,8 +89,10 @@ for (let [n, stuff] of Object.entries(jsoncontent)) {
     ];
 
     if (i == 0) {
-      ext.unshift("> </tr> </td> </table>");
-      ext.unshift(">");
+      [
+        "> </tr> </td> </table>",
+        ">"
+      ].forEach( e => ext.unshift(e));
     }
  
     ext.forEach( e => content.push(e) );
