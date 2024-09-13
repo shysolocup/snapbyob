@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - wiki/_Sidebar.md
+      - wikiscripts/publishme.txt
 
 concurrency:
   group: publish-sidebar

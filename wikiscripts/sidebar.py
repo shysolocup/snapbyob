@@ -32,4 +32,8 @@ for command in commands:
     os.system(command);
 
 
-sys.stdout.flush()
+with open("publishme.txt", "a") as file:
+    file.write(".");
+
+
+sys.stdout.flush() 
