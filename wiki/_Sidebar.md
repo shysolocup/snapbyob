@@ -266,4 +266,60 @@
 
 </details>
 
+<details>
+
+<summary> <b> <a href="/home/runner/work/snapbyob/snapbyob//wiki/Children">🛈</a> Children </b> </summary>
+
+<br>
+
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.getByName()) getByName() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.getById()) getById() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.set()) set() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.new()) new() </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.list) list </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.first) first </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Children.last) last </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+
+<br>
+
+</details>
+
 <br>
