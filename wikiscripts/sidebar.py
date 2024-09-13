@@ -1,19 +1,28 @@
 import sys
 import os
 
-logrefdir = sys.argv[1]
+logrefdir = sys.argv[1];
 username = sys.argv[2];
 useremail = sys.argv[3];
 commitmsg = sys.argv[4];
 repolink = sys.argv[5];
 
 
+basedir = os.path.dirname(os.path.realpath(__file__))
+
+print(basedir);
+
 print(username, useremail, commitmsg, repolink);
+
+
+with open("publishme.txt", "a") as file:
+    file.write(".");
 
 
 commands = [
     'echo os is running',  
     'git add {0}'.format(logrefdir),
+    'git add {0}'.format(basedir+"/publishme.txt"),
     'git commit -m "{0} & Updated wiki" {1}'.format(commitmsg, logrefdir),
     'git push',
     'git status'
@@ -30,10 +39,6 @@ if username != "undefined" and useremail != "undefined":
 for command in commands:
     print(command);
     os.system(command);
-
-
-with open("publishme.txt", "a") as file:
-    file.write(".");
 
 
 sys.stdout.flush() 
