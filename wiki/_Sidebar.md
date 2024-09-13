@@ -322,4 +322,72 @@
 
 </details>
 
+<details>
+
+<summary> <b> <a href="/home/runner/work/snapbyob/snapbyob//wiki/Event">🛈</a> Event </b> </summary>
+
+<br>
+
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.Listen()) Listen() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.Fire()) Fire() </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.FireSync()) FireSync() </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+>
+> <table> <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.name) name </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.category) category </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.parent) parent </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.id) id </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.listeners) listeners </b>
+>
+> </tr> </td>
+
+>  <tr> <td>
+>
+> <b> [🛈](/home/runner/work/snapbyob/snapbyob//wiki/Event.project) project </b>
+>
+> </tr> </td>
+
+> </tr> </td> </table>
+
+<br>
+
+</details>
+
 <br>
