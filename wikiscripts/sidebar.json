@@ -86,5 +86,23 @@
             "last"
         ]
 
+    },
+
+    
+    "Event": {
+        "methods": [
+            "Listen",
+            "Fire",
+            "FireSync"
+        ],
+
+        "properties": [
+            "name",
+            "category",
+            "parent",
+            "id",
+            "listeners",
+            "project"
+        ]
     }
 }
