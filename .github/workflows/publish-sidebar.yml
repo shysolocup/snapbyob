@@ -1,16 +1,12 @@
-name: Publish wiki
+name: Publish sidebar
 on:
   push:
     branches: [main]
     paths:
-      - wiki/**
-      - .github/workflows/publish-wiki.yml
-
-    paths-ignore:
       - wiki/_Sidebar.md
 
 concurrency:
-  group: publish-wiki
+  group: publish-sidebar
   cancel-in-progress: true
 
 permissions:
