@@ -1,8 +1,2 @@
 # snapbyob docs
 ### [Home](https://github.com/shysolocup/snapbyob/wiki)
-
-<details>
-
-<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/Project">🛈</a> Project </b> </summary>
-
-<br>

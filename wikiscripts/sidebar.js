@@ -33,45 +33,41 @@ console.log(username);
 console.log(useremail);
 console.log(commitmsg);
 
-
-/*fetch(`https://api.github.com/user/${username}`, {
-  "headers": {
-    "User-Agent": "request",
-    "Authorization": `Bearer ${token}`,
-    "X-GitHub-Api-Version": "2022-11-28"
-  }
-}).then(res => {
-  console.log(res);
-});*/
-
 console.log('test');
 
-let base = "https://github.com/shysolocup/snapbyob";
+let base = require('./base.json');
 
 let tree = `${base}/tree/main/wiki`;
 let blob = `${base}/blob/main/wiki`
 
 let basedir = __dirname.replace("wikiscripts", "");
-let logrefdir = `${basedir}wiki/_Sidebar.md`;
+let dir = `${basedir}wiki/_Sidebar.md`;
 
 let jsoncontent = require('./sidebar.json');
 let start = fs.readFileSync(`${__dirname}/sidebar_start.txt`, 'utf8');
 
 let content = start.split("\n");
 
+
+jsoncontent.forEach((n) => {
+
+  let ext = [
+    "<details>",
+    "",
+    `<summary> <b> <a href="https://github.com/shysolocup/snapbyob/wiki/${n}">🛈</a> ${n} </b> </summary>`,
+    "",
+    "<br>",
+    ""
+  ];
+
+  ext.forEach( e => content.push(e) );
+});
+
+
 console.log(content);
 
-/*
 
-let content = [
-
-  "# LogRef",
-  "this is where log references are for easier navigation<br>",
-  '<img height=22 src="https://github.com/Rats-United/HOME-update-log/actions/workflows/logref.yml/badge.svg" alt="publish">'
-
-];
-
-groups.forEach((group, gi) => {
+/*groups.forEach((group, gi) => {
   let groupdir = `${dir}/${group}`;
   let treelink = `${tree}/${ group.split(" ").join("%20") }`;
   let bloblink = `${blob}/${ group.split(" ").join("%20") }`;
@@ -100,15 +96,15 @@ groups.forEach((group, gi) => {
     
     content.push(`${li+1}. ${name} [(${ log })](${ logbloblink }) `)
   });
-});
+});*/
 
-
+/*
 content = content.join("\n\n");
 
-fs.writeFileSync(logrefdir, content)
+fs.writeFileSync(dir, content)
 
 
-console.log(fs.readFileSync(logrefdir, 'utf8'));
+console.log(fs.readFileSync(dir, 'utf8'));
 
 
 const platform = os.platform();
