@@ -109,9 +109,9 @@ class Project:
                 name = k;
 
             if not category or category == "__":
-                category = "other";
+                category = self.blocks["other"];
 
-            self.BlockMaker(name, category)(data["callback"]);
+            self.BlockMaker(name=name, category=category)(data["callback"]);
 
 
         self.events = {
