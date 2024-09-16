@@ -5,5 +5,5 @@ blockdata = {
     'category': 'control',
 }
 
-def callback(self, ctx: ):
-    print(msg);
+def callback(self, ctx: CloneContextItem ):
+    print(ctx);
