@@ -14,6 +14,9 @@ async def test(self, ctx):
 
 @proj.on("ping")
 async def test(self, time):
+    print(Enum.cloneContext.myself);
+    print(Enum.cloneContext.Sprite);
+
     await proj.scripts.insert("control.ifElse", True);
 
 

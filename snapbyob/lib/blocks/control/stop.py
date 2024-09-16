@@ -1,4 +1,4 @@
-from ....lib.typings.Context import ContextItem
+from ....lib.typings.RelContext import RelContextItem
 
 
 blockdata = {
@@ -6,5 +6,5 @@ blockdata = {
     'category': 'control',
 }
 
-def callback(self, ci:ContextItem):
+def callback(self, ci:RelContextItem):
     print(ci);

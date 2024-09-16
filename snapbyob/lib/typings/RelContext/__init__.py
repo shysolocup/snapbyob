@@ -2,13 +2,13 @@ from ..EnumItem import EnumItem;
 from ..EnumBaby import EnumBaby;
 
 
-class ContextItem(EnumBaby):
+class RelContextItem(EnumBaby):
     pass;
 
 
-class EnumContext(EnumItem):
-    __enumname__ = "context"
-    __typeclass__ = ContextItem
+class EnumRelContext(EnumItem):
+    __enumname__ = "relContext"
+    __typeclass__ = RelContextItem
 
     __items__ = [
         "all",
@@ -19,4 +19,4 @@ class EnumContext(EnumItem):
         "otherScriptsInSprite"
     ]
 
-Context = EnumContext();
+RelContext = EnumRelContext();
