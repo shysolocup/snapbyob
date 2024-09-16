@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'forever',
+    'name': '__',
     'category': 'control',
 }
 

@@ -1,7 +1,7 @@
 from ....lib.typings.Message import MessageItem;
 
 blockdata = {
-    'name': 'broadcastAndWait',
+    'name': '__',
     'category': 'control',
 }
 

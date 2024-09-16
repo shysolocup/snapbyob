@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'pointInDirection',
+    'name': '__',
     'category': 'motion',
 }
 

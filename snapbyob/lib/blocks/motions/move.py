@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'move',
+    'name': '__',
     'category': 'motion',
 }
 

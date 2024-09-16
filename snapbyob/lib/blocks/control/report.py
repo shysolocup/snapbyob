@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'report',
+    'name': '__',
     'category': 'control',
 }
 

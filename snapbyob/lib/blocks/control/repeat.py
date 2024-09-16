@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'repeat',
+    'name': '__',
     'category': 'control',
 }
 

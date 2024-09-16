@@ -2,7 +2,7 @@ from ....lib.typings.Context import ContextItem
 
 
 blockdata = {
-    'name': 'stop',
+    'name': '__',
     'category': 'control',
 }
 

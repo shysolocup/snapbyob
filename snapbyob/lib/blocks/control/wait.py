@@ -1,7 +1,7 @@
 from ....lib.typings.TimeConv import TimeConv
 
 blockdata = {
-    'name': 'wait',
+    'name': '__',
     'category': 'control',
 }
 

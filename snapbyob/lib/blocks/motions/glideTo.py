@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'glideTo',
+    'name': '__',
     'category': 'motion',
 }
 

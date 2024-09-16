@@ -97,10 +97,21 @@ class Project:
 
         self.idcache = {};
 
-        self.blocks = {};
+        self.blocks = {
+            "other": {}
+        };
 
         for k, data in rawblockdata.items():
-            self.BlockMaker(name=data["blockdata"]["name"], category=data["blockdata"]["category"])(data["callback"]);
+            name = data["blockdata"].get("name");
+            category = data["blockdata"].get("category");
+
+            if not name or name == "__":
+                name = k;
+
+            if not category or category == "__":
+                category = "other";
+
+            self.BlockMaker(name, category)(data["callback"]);
 
 
         self.events = {
@@ -113,6 +124,15 @@ class Project:
                 'renamed': self.discretenew(Event, category="project"),
                 'updated': self.discretenew(Event, category="project")
             },
+
+
+            # scenes
+            'scene': {
+                'created': self.discretenew(Event, category="scene"),
+                'destroyed': self.discretenew(Event, category="scene"),
+                'updated': self.discretenew(Event, category="scene")
+            },
+
             
             # events
             'event': {

@@ -1,7 +1,7 @@
 from ....lib.typings.Keycode import Key;
 
 blockdata = {
-    'name': 'whenKeyPressed',
+    'name': '__',
     'category': 'control',
 }
 

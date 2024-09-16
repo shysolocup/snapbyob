@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'whenFlagClicked',
+    'name': '__',
     'category': 'control',
 }
 

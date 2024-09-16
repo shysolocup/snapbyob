@@ -1,7 +1,7 @@
 from ....lib.typings.Point import Point;
 
 blockdata = {
-    'name': 'pointTowards',
+    'name': '__',
     'category': 'motion',
 }
 

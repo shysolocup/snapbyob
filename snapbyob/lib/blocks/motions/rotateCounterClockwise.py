@@ -1,5 +1,5 @@
 blockdata = {
-    'name': 'rotateCounterClockwise',
+    'name': '__',
     'category': 'motion',
 }
 
