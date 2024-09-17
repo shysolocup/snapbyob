@@ -1,7 +1,8 @@
 class Children:
-    def __init__(self, proj, parent):
+    def __init__(self, proj, scene, parent):
         self.parent = parent;
-        self.project = proj
+        self.scene = scene;
+        self.project = proj;
 
     @property
     def list(self):

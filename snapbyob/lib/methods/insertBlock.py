@@ -2,7 +2,7 @@ from ..typings.BlockInstance import BlockInstance;
 
 async def insertBlock(self, ref, args, kwargs):
         global block
-        block = self.project.blocks;
+        block = self.scene.blocks;
         reflist = [ block ];
 
         if type(ref) == str:
@@ -13,7 +13,7 @@ async def insertBlock(self, ref, args, kwargs):
                     block = block[r];
                     reflist.append(block);
                 except:
-                    block = exec('block.{0}'.format(r));
+                    block = getattr(block, r);
                     reflist.append(block);
         
 
@@ -24,12 +24,12 @@ async def insertBlock(self, ref, args, kwargs):
                     block = block[r];
                     reflist.append(block);
                 except:
-                    block = exec('block.{0}'.format(r));
+                    block = getattr(block, r);
                     reflist.append(block);
         
         block = reflist[-1];
         
-        inst = await self.project.new(BlockInstance, block=block, args=args, kwargs=kwargs);
+        inst = await self.scene.new(BlockInstance, block=block, args=args, kwargs=kwargs);
         inst.ref = reflist;
         inst.refstring = ref;
 

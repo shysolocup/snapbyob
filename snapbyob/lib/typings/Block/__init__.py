@@ -5,9 +5,10 @@ from ..BlockHolder import BlockHolder
 
 class Block(BlockHolder):
 
-    def __init__(self, proj, args, kwargs):
+    def __init__(self, proj, scene, args, kwargs):
 
         self.project = proj;
+        self.scene = scene;
         self.id = id(8, proj.idcache);
 
         self.args = args;
@@ -18,10 +19,8 @@ class Block(BlockHolder):
         self.callback = kwargs.get("f");
         self.parent = kwargs.get("p");
 
-        self.id = id(8, proj.idcache);
-
         if type(self.category) == str:
-            self.category = self.project.blocks[self.category];
+            self.category = self.scene.blocks[self.category];
 
         self.category[self.name] = self;
         

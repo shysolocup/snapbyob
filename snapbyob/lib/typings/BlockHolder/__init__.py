@@ -56,6 +56,6 @@ class BlockHolder:
     @property
     def children(self):
         if not self.__dict__.get("__children__"):
-            self.__children__ = self.project.discretenew(Children, self);
+            self.__children__ = self.scene.discretenew(Children, self);
 
         return self.__children__;

@@ -15,7 +15,8 @@ separated.pop();
 rawtypes = formFiles(drive, sep, separated, '.', [ 'lib', 'typings' ]);
 
 class NewTypings:
-    pass
+    def get(self, t):
+        return self.__dict__.get(t);
 
 
 Typings = NewTypings();

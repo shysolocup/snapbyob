@@ -1,6 +1,14 @@
 from ..EnumItem import EnumItem;
 
 class EnumBaby:
+    @property
+    def project(self):
+        return self.enum.project;
+
+    @property
+    def scene(self):
+        return self.enum.scene;
+
     def __init__(self, value, id, enumitem, enum=None):
         self.id = id;
         self.value = value;

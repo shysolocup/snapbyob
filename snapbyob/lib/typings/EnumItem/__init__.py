@@ -13,6 +13,14 @@ def getstuff(a, b):
 class EnumItem:
     masked = False
 
+    @property
+    def project(self):
+        return self.enum.project;
+
+    @property
+    def scene(self):
+        return self.enum.scene;
+
     def __getattr__(self, k):
         stuff = {};
         

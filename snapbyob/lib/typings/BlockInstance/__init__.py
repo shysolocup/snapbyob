@@ -2,8 +2,9 @@ from ..BlockHolder import BlockHolder;
 from ....lib.methods.id import id;
 
 class BlockInstance(BlockHolder):
-    def __init__(self, proj, block, args, kwargs):
+    def __init__(self, proj, scene, block, args, kwargs):
         self.project = proj;
+        self.scene = scene;
         self.block = block;
 
         extendees = [

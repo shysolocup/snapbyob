@@ -8,16 +8,22 @@ proj = Project({
 
 @proj.on("block.placed")
 async def test(self, ctx):
-    print(ctx.args);
+    print(ctx.kwargs);
 
 
 @proj.on("ping")
 async def test(self, time, scene):
-    print(scene);
+    enum = scene.enum;
+    sprite = scene.get("sprites.sprite");
+    stage = scene.get("stages.stage");
+
+    print(enum.cloneContext.sprite);
+
+    await sprite.insert("motion.move", x=5, y=5);
 
 
 async def test():
-    scene = await proj.new("Scene", );
+    scene = await proj.new("Scene");
     await proj.ping(scene);
 
 asyncio.run(test());
