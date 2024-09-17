@@ -1,6 +1,10 @@
 from ..Event import Event
 from ..Block import Block
-from ..Scripts import Scripts;
+# from ..Scripts import Scripts;
+from ..Stage import Stage;
+from ..Costume import Costume;
+from ..Enum import Enum;
+from ..Sprite import Sprite;
 
 from ....lib.methods.id import id
 from ....lib.methods.pingtime import pingtime
@@ -69,8 +73,18 @@ class Project:
 
     @name.setter
     def name(self, v):
-        asyncio.run(self.events["project"]["nameChanged"].Fire(self, self.data["project"]["@name"], v)); # Project, oldName, newName
+        asyncio.run(self.events["project"]["renamed"].Fire(self, self.data["project"]["@name"], v)); # Project, oldName, newName
         self.data["project"]["@name"] = v
+
+
+    @property
+    def version(self):
+        return self.data["project"]["@version"]
+
+    @version.setter
+    def version(self, v):
+        asyncio.run(self.events["project"]["reversioned"].Fire(self, self.data["project"]["@version"], v)); # Project, oldVer, newVer
+        self.data["project"]["@version"] = v
 
 
     async def ping(self, *args, **kwargs):
@@ -78,28 +92,32 @@ class Project:
 
 
     def discretenew(self, t, *args, **kwargs):
-
         if type(t) == str:
-            t = globals()[t];
-        
-        arglen = len(args);
-        kwarglen = len(kwargs);
+            from ....__init__ import Typings;
+            t = globals().get(t) or exec('Typings.{t}'.format(t));
 
         return t(self, *args, **kwargs);
 
 
-    def __init__(self, *args):
+    async def new(self, t, *args, **kwargs):
+        if type(t) == str:
+            from ....__init__ import Typings;
+            t = globals().get(t) or exec('Typings.{t}'.format(t));
 
-        options = args[0];
+        stuff = t(self, *args, **kwargs);
+        await self.events['new'].Fire(self, stuff); # Project, Any
+        return stuff
+    
+
+
+    def __init__(self, options=None):
+        if not options:
+            options = {};
 
         self.events = {};
-        self.scripts = Scripts(self);
-
         self.idcache = {};
+        self.scenes = {};
 
-        self.blocks = {
-            "other": {}
-        };
 
         for k, data in rawblockdata.items():
             name = data["blockdata"].get("name");
@@ -122,12 +140,14 @@ class Project:
             # project
             'project': {
                 'renamed': self.discretenew(Event, category="project"),
-                'updated': self.discretenew(Event, category="project")
+                'reversioned': self.discretenew(Event, category="project"),
+                'updated': self.discretenew(Event, category="project"),
             },
 
 
             # scenes
             'scene': {
+                'renamed': self.discretenew(Event, category="scene"),
                 'created': self.discretenew(Event, category="scene"),
                 'destroyed': self.discretenew(Event, category="scene"),
                 'updated': self.discretenew(Event, category="scene")
@@ -159,16 +179,16 @@ class Project:
         if not options:
             options = {};
 
-        projId = id(8, self.idcache);
+        self.id = id(8, self.idcache);
         projName = options.get('name');
 
         if not projName:
-            projName = projId;
+            projName = self.id;
         
         projVer = options.get("version");
 
         if not projVer:
-            self.projVer = 2;
+            projVer = 2;
 
         self.data = {
             "project": {
@@ -213,17 +233,6 @@ class Project:
         kwargs.__setitem__("f", callback),
         self.discretenew(Block, args=args, kwargs=kwargs)
     );
-
-    async def new(self, t, *args, **kwargs):
-        if type(t) == str:
-            t = globals()[t];
-
-        arglen = len(args);
-        kwarglen = len(kwargs);
-
-        stuff = t(self, *args, **kwargs);
-        await self.events['new'].Fire(self, stuff); # Project, Any
-        return stuff
 
 
     def actuallyDoEventStuff(self, ref, callback):

@@ -1,4 +1,4 @@
-from snapbyob import Project, Enum;
+from snapbyob import Project;
 import asyncio;
 
 
@@ -6,22 +6,19 @@ proj = Project({
     "name": "very cool"
 });
 
-
 @proj.on("block.placed")
 async def test(self, ctx):
-    print(ctx.callback);
+    print(ctx.args);
 
 
 @proj.on("ping")
-async def test(self, time):
-    print(Enum.cloneContext.myself);
-    print(Enum.cloneContext.Sprite);
-
-    await proj.scripts.insert("control.ifElse", True);
+async def test(self, time, scene):
+    print(scene);
 
 
 async def test():
-    await proj.ping();
+    scene = await proj.new("Scene", );
+    await proj.ping(scene);
 
 asyncio.run(test());
 

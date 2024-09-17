@@ -15,7 +15,7 @@ class EnumCloneContext(EnumItem):
     ]
 
     def __propitems__(self):
-        return [ "Sprite" ];
+        return self.enum.project.sprites.keys();
         
 
 CloneContext = EnumCloneContext();
