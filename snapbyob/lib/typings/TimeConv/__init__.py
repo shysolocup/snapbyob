@@ -1,8 +1,8 @@
 class TimeConv:
     def __init__(self, *args, **kwargs):
-        self.value = self.convert(*args, **kwargs);
+        self.value = self.format(*args, **kwargs);
 
-    def convert(self, x:str = None):
+    def format(self, x:str = None):
         if type(self) == str and not x:
             x = self;
 

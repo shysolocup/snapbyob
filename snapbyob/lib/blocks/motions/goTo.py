@@ -5,5 +5,5 @@ blockdata = {
     'category': 'motion',
 }
 
-def callback(self, x:int = None, y:int = None, point:Point = None):
+def callback(self, x: int|float = None, y: int|float = None, point:Point = None):
     print(x, y, point);

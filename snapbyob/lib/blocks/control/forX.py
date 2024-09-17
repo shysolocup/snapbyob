@@ -3,5 +3,5 @@ blockdata = {
     'category': 'control',
 }
 
-def callback(self, var:str, x:int|float, y:int|float):
+def callback(self, var:str, x:int, y:int):
     print(var, x, y);

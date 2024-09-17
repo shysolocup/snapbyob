@@ -1,4 +1,4 @@
-from snapbyob import Project;
+from snapbyob import Project, TimeConv;
 import asyncio;
 
 
@@ -17,7 +17,10 @@ async def test(self, time, scene):
     sprite = scene.get("sprites.sprite");
     stage = scene.get("stages.stage");
 
-    await stage.place("control.createACloneOf", sprite);
+    costume = scene.get("costumes.turtle");
+
+    await sprite.place("looks.changeEffectBy", enum.effect.ghost, 5);
+    await sprite.place("looks.goToLayer", enum.layer.front);
 
 
 async def test():
