@@ -3,5 +3,5 @@ blockdata = {
     'category': 'looks',
 }
 
-def callback(self, l: int|float ):
-    print(p);
+def callback(self, a: int|float ):
+    print(a);
