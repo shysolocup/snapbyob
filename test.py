@@ -8,7 +8,7 @@ proj = Project({
 
 @proj.on("block.placed")
 async def test(self, ctx):
-    print(ctx.kwargs);
+    ctx.callback(self, *ctx.args, **ctx.kwargs);
 
 
 @proj.on("ping")
@@ -17,9 +17,7 @@ async def test(self, time, scene):
     sprite = scene.get("sprites.sprite");
     stage = scene.get("stages.stage");
 
-    print(enum.cloneContext.sprite);
-
-    await sprite.insert("motion.move", x=5, y=5);
+    await stage.place("control.createACloneOf", sprite);
 
 
 async def test():

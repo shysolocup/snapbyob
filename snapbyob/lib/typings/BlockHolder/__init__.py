@@ -2,13 +2,14 @@ from ..Children import Children;
 
 
 class BlockHolder:
-    async def insert(self, ref, *args, **kwargs):
+    async def place(self, ref, *args, **kwargs):
         from ....lib.methods.insertBlock import insertBlock
         block = await insertBlock(self, ref, args, kwargs);
         await self.project.events["block"]["placed"].Fire(self, block);
         return block
     
-    async def insertGroup(self, *myargs):
+
+    async def placeGroup(self, *myargs):
         from ....lib.methods.insertBlock import insertBlock
         
         global table;
@@ -46,10 +47,10 @@ class BlockHolder:
 
             inst = await insertBlock(self, name, args, kwargs);
             await self.project.events["block"]["placed"].Fire(self, inst);
-            stuff.insert(i, inst);
+            stuff.place(i, inst);
 
             if children:
-                await inst.insertGroup(children);
+                await inst.placeGroup(children);
         
         return stuff;
 
