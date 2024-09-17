@@ -6,4 +6,4 @@ blockdata = {
 }
 
 def callback(self, i: TouchingInteractionItem, b:bool):
-    print(i);
+    print(i, b);

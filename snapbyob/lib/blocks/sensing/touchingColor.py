@@ -6,4 +6,4 @@ blockdata = {
 }
 
 def callback(self, c: Color3, b:bool):
-    print(c);
+    print(c, b);

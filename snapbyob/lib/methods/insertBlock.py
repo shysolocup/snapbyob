@@ -8,7 +8,6 @@ async def insertBlock(self, ref, args, kwargs):
         if type(ref) == str:
             refs = ref.split(".");
             for r in refs:
-                # print(block, r);
                 try:
                     block = block[r];
                     reflist.append(block);

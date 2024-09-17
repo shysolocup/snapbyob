@@ -14,18 +14,15 @@ async def test(self, ctx):
 @proj.on("ping")
 async def test(self, time, scene):
     enum = scene.enum;
-    sprite = scene.get("sprites.sprite");
-    stage = scene.get("stages.stage");
+    sprite = scene.get('sprites.sprite');
 
-    costume = scene.get("costumes.turtle");
-
-    await sprite.place("looks.changeEffectBy", enum.effect.ghost, 5);
-    await sprite.place("looks.goToLayer", enum.layer.front);
+    await sprite.place('looks.effect', enum.effect.saturation);
+    await sprite.place('looks.changeEffectBy', enum.effect.saturation, 10);
 
 
 async def test():
-    scene = await proj.new("Scene");
-    await proj.ping(scene);
+    scene = await proj.new('Scene');
+    await proj.ping(scene); 
 
 asyncio.run(test());
 
