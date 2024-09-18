@@ -32,6 +32,12 @@ async def insertBlock(self, ref, args, kwargs):
         inst.ref = reflist;
         inst.refstring = ref;
 
-        self.children.new(block)
+        if getattr(block, "mods"):
+            for mname, m in block.mods.items():
+                await m(inst);
+
+        self.children.new(block);
+
+        await self.project.events["block"]["placed"].Fire(self, inst);
 
         return inst;

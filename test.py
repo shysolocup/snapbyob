@@ -8,7 +8,7 @@ proj = Project({
 
 @proj.on("block.placed")
 async def test(self, ctx):
-    ctx.callback(self, *ctx.args, **ctx.kwargs);
+    ctx.callback(ctx, *ctx.args, **ctx.kwargs);
 
 
 @proj.on("ping")
@@ -18,6 +18,12 @@ async def test(self, time, scene):
 
     await sprite.place('looks.effect', enum.effect.saturation);
     await sprite.place('looks.changeEffectBy', enum.effect.saturation, 10);
+
+    await sprite.placeGroup([
+        { 'name': 'control.ifX', 'conditions': [
+            { 'name': 'sensing.keyPressed', 'args': enum.keycode.space }
+        ]}
+    ])
 
 
 async def test():

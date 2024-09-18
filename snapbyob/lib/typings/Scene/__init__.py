@@ -120,6 +120,7 @@ class Scene:
         for k, data in rawblockdata.items():
             name = data["blockdata"].get("name");
             category = data["blockdata"].get("category");
+            mods = data["blockdata"].get('mods');
 
             if not name or name == "__":
                 name = k;
@@ -127,7 +128,7 @@ class Scene:
             if not category or category == "__":
                 category = self.blocks["other"];
 
-            self.BlockMaker(name=name, category=category)(data["callback"]);
+            self.BlockMaker(name=name, category=category, mods=mods)(data["callback"]);
 
 
     def blockCat(self, makerArgs):

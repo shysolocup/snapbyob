@@ -1,6 +1,11 @@
+from ....lib.methods.conditional import conditional;
+
 blockdata = {
     'name': '__',
     'category': 'control',
+    'mods': {
+        'conditions': conditional
+    }
 }
 
 callback = [];

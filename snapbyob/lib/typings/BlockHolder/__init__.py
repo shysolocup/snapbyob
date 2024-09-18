@@ -5,7 +5,6 @@ class BlockHolder:
     async def place(self, ref, *args, **kwargs):
         from ....lib.methods.insertBlock import insertBlock
         block = await insertBlock(self, ref, args, kwargs);
-        await self.project.events["block"]["placed"].Fire(self, block);
         return block
     
 
@@ -45,9 +44,11 @@ class BlockHolder:
             if type(args) == list:
                 args = tuple(args);
 
+            kwargs["__data__"] = block;
+
             inst = await insertBlock(self, name, args, kwargs);
-            await self.project.events["block"]["placed"].Fire(self, inst);
-            stuff.place(i, inst);
+            
+            stuff.insert(i, inst);
 
             if children:
                 await inst.placeGroup(children);

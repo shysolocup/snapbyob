@@ -17,6 +17,7 @@ class Block(BlockHolder):
         self.name = kwargs.get("name");
         self.category = kwargs.get("category");
         self.callback = kwargs.get("f");
+        self.mods = kwargs.get('mods') or [];
         self.parent = kwargs.get("p");
 
         if type(self.category) == str:

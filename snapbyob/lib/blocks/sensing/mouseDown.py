@@ -3,5 +3,5 @@ blockdata = {
     'category': 'sensing',
 }
 
-def callback(self):
-    pass
+def callback(self, b:bool=False):
+    print(b);

@@ -5,5 +5,5 @@ blockdata = {
     'category': 'sensing',
 }
 
-def callback(self, i: TouchingInteractionItem, b:bool):
+def callback(self, i: TouchingInteractionItem, b:bool=False):
     print(i, b);
