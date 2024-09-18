@@ -1,3 +1,6 @@
+import copy
+
+
 class Children:
     def __init__(self, proj, scene, parent):
         self.parent = parent;
@@ -5,16 +8,31 @@ class Children:
         self.project = proj;
 
     @property
+    def keys(self):
+        return list(self.list.keys());
+        
+    @property
+    def values(self):
+        return list(self.list.values());
+
+    @property
     def list(self):
-        return self.__dict__;
+        l = copy.copy(self.__dict__);
+    
+        rem = [ 'parent', 'scene', 'project'];
+        for r in rem:
+            if l.get(r):
+                del l[r];
+
+        return l;
 
     @property
     def first(self):
-        return list(self.__dict__.items())[1];
+        return self.list[1];
 
     @property
     def last(self):
-        return list(self.__dict__.items())[-1];
+        return self.list[-1];
 
     def getByName(self, k):
         for name, child in self.__dict__.items():

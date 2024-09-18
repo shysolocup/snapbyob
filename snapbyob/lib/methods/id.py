@@ -1,8 +1,9 @@
+from .pingtime import pingtime;
 import random
 
 def id(length, cache):
     def gen():
-        random.seed(length);
+        random.seed(pingtime());
         thing = random.random();
         
         for i in range(length):
@@ -16,6 +17,9 @@ def id(length, cache):
         g = gen();
     
         if not cache.get(g):
+            cache[len(cache)] = g;
             return g;
+
+    cache[g] = 0;
 
     return g;

@@ -33,7 +33,7 @@ async def insertBlock(self, ref, args, kwargs):
         inst.refstring = ref;
 
         if getattr(block, "mods"):
-            for mname, m in block.mods.items():
+            for m in block.mods:
                 await m(inst);
 
         self.children.new(block);

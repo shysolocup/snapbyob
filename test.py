@@ -16,18 +16,33 @@ async def test(self, time, scene):
     enum = scene.enum;
     sprite = scene.get('sprites.sprite');
 
-    await sprite.place('looks.effect', enum.effect.saturation);
-    await sprite.place('looks.changeEffectBy', enum.effect.saturation, 10);
+    # await sprite.place('looks.effect', enum.effect.saturation);
+    # await sprite.place('looks.changeEffectBy', enum.effect.saturation, 10);
 
     await sprite.placeGroup([
-        { 'name': 'control.ifX', 'conditions': [
-            { 'name': 'sensing.keyPressed', 'args': enum.keycode.space }
-        ]}
+        { 'name': 'control.ifX', 
+            
+            'args': [
+                { 'name': 'sensing.keyPressed', 'args': enum.keycode.space },
+                { 'name': 'sensing.keyPressed', 'args': enum.keycode.w }
+            ], 
+
+            'actions': [
+                { 'name': 'looks.say', 'args': "test1" },
+                { 'name': 'looks.say', 'args': "test2" }
+            ]
+        
+        }
     ])
 
 
 async def test():
-    scene = await proj.new('Scene');
+    scene = await proj.new('Scene', {
+        'name': "a",
+        'width': 500,
+        'height': 500
+    });
+
     await proj.ping(scene); 
 
 asyncio.run(test());

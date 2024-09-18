@@ -1,20 +1,10 @@
-from ....lib.methods.conditional import conditional;
+from ....lib.typings.BlockInstance import BlockInstance;
+from ....lib.typings.Block import Block;
 
 blockdata = {
     'name': '__',
     'category': 'control',
-    'mods': {
-        'conditions': conditional
-    }
 }
 
-callback = [];
-
-def ifX(self, v:bool=None):
-    print(v);
-
-def ifElse(self):
-    print("else");
-
-callback.append(ifX);
-callback.append(ifElse);
+def callback(self, cond1: bool | BlockInstance | Block | dict = None, cond2 : bool | BlockInstance | Block | dict = None):
+    print(cond1, cond2);

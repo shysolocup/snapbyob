@@ -1,13 +1,19 @@
-from ....lib.methods.conditional import conditional;
+from ....lib.methods.actions import actions;
+from ....lib.typings.BlockInstance import BlockInstance;
+from ....lib.typings.Block import Block;
 
 
 blockdata = {
     'name': '__',
     'category': 'control',
-    'mods': {
-        'conditions': conditional
-    }
+    'mods': [
+        actions
+    ]
 }
 
-def callback(self, b:bool=None):
-    print(self.conditions.list);
+def callback(self, *args):
+    actions = self.actions.list;
+    args = list(self.args);
+
+    print(actions.values);
+    print(args);

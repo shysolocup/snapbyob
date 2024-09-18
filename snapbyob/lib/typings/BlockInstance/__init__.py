@@ -23,9 +23,9 @@ class BlockInstance(BlockHolder):
 
         self.kwargs = kwargs or {};
         self.args = args or tuple([]);
-        
-        self.id = id(8, proj.idcache);
-        self.blockId = self.block.id
+        self.blockId = self.block.id;
 
         for e in extendees:
             exec('self.{0} = self.block.{0}'.format(e));
+
+        self.id = id(8, proj.idcache);

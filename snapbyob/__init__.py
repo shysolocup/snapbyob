@@ -22,5 +22,6 @@ class NewTypings:
 Typings = NewTypings();
 
 for n, d in rawtypes.items():
-    exec('from {d} import {n}'.format(d=d, n=n));
+    ex = 'from {d} import {n}'.format(d=d, n=n)
+    exec(ex);
     exec('Typings.{n} = {n}'.format(d=d, n=n));

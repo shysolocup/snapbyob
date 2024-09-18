@@ -1,15 +1,15 @@
 from ..typings.Children import Children;
 
 
-async def conditional(self):
-    self.conditions = self.scene.discretenew(Children, self);
+async def actions(self):
+    self.actions = self.scene.discretenew(Children, self);
 
-    if getattr(self, "data") and self.data.get("conditions"):
+    if getattr(self, "data") and self.data.get("actions"):
         from ..typings.BlockInstance import BlockInstance;
 
-        cond = self.data.get('conditions');
+        cond = self.data.get('actions');
 
-        for i, bl in enumerate(cond):
+        async def dothestuff(bl):
             name = bl.get("name");
             args = bl.get("args");
             kwargs = bl.get('kwargs');
@@ -68,9 +68,14 @@ async def conditional(self):
             inst.ref = reflist;
             inst.refstring = name;
             
-            self.conditions.new(inst);
+            self.actions.new(inst);
 
             await self.project.events["block"]["placed"].Fire(self, inst);
         
             if children:
                 await inst.placeGroup(children);
+
+            return inst;
+
+        for i, bl in enumerate(cond):
+            await dothestuff(bl);
