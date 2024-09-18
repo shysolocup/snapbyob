@@ -12,8 +12,13 @@ blockdata = {
 }
 
 def callback(self, *args):
-    actions = self.actions.list;
+    actions = self.actions.values;
     args = list(self.args);
 
-    print(actions.values);
-    print(args);
+    statements = [];
+
+    for i, c in enumerate(args):
+        a = actions[i];
+        statements.append({ 'condition': c, 'action': a});
+
+    print(statements);
