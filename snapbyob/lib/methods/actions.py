@@ -2,9 +2,9 @@ from ..typings.Children import Children;
 
 
 async def actions(self):
-    self.actions = self.scene.discretenew(Children, self);
+    self.actions = self.__dict__.get("actions") or self.scene.discretenew(Children, self);
 
-    if getattr(self, "data") and self.data.get("actions"):
+    if self.__dict__.get("data") and self.data.get("actions"):
         from ..typings.BlockInstance import BlockInstance;
 
         cond = self.data.get('actions');
