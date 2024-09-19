@@ -10,22 +10,24 @@ class Project:
 
     @property
     def name(self):
-        return self.data["project"]["@name"]
+        return self.getDataItem('project.@name');
 
     @name.setter
     def name(self, v):
-        asyncio.run(self.events["project"]["renamed"].Fire(self, self.data["project"]["@name"], v)); # Project, oldName, newName
-        self.data["project"]["@name"] = v
+        oldname = self.getDataItem('project.@name');
+        self.setDataItem('project.@name', v);
+        asyncio.run(self.events["project"]["renamed"].Fire(self, oldname, v)); # Project, oldName, newName
 
 
     @property
     def version(self):
-        return self.data["project"]["@version"]
+        return self.getDataItem('project.@version')
 
     @version.setter
     def version(self, v):
-        asyncio.run(self.events["project"]["reversioned"].Fire(self, self.data["project"]["@version"], v)); # Project, oldVer, newVer
-        self.data["project"]["@version"] = v
+        oldver = self.getDataItem('project.@version');
+        self.setDataItem('project.@version', v);
+        asyncio.run(self.events["project"]["reversioned"].Fire(self, oldver, v)); # Project, oldVer, newVer
 
 
     async def ping(self, *args, **kwargs):
@@ -79,6 +81,114 @@ class Project:
         thing = reflist[-1];
     
         return thing;
+
+
+    def setDataItem(self, ref, value):
+        reflist = [ self.data ];
+
+        def doit(refs):
+            global thing;
+            thing = self.data;
+
+            for i, r in enumerate(refs):
+                for i2, d in enumerate(thing):
+
+                    if d[0] == r:
+                        thing = d[1];
+
+                        if i == len(refs)-1:
+                            d[1] = value;
+
+                        reflist.append(thing);
+                    
+                    elif d[0] != r and i2 == len(thing)-1:
+                        thing.append([ r, value ]);
+        
+                    else:
+                        for d2 in d[1]:
+                            if d2[0] == "name" and d2[1] == r:
+                                thing = d[1];
+                                reflist.append(thing);
+
+        if type(ref) == str:
+            refs = ref.split(".");
+            doit(refs);
+        
+        elif type(ref) == list:
+            doit(ref);
+        
+
+        thing = reflist[-1];
+    
+        return thing;
+
+
+    def newDataItem(self, ref, value):
+        reflist = [ self.data ];
+
+        def doit(refs):
+            global thing;
+            thing = self.data;
+
+            for i, r in enumerate(refs):
+                for i2, d in enumerate(thing):
+                    if len(thing)-1:
+                        thing.append([ r, value ]);
+
+        if type(ref) == str:
+            refs = ref.split(".");
+            doit(refs);
+        
+        elif type(ref) == list:
+            doit(ref);
+        
+
+        thing = reflist[-1];
+    
+        return thing;
+
+
+    def getDataItem(self, ref):
+        reflist = [ self.data ];
+
+        def doit(refs):
+            global thing;
+            thing = self.data;
+
+            for r in refs:
+                if type(thing) == list:
+                    for d in thing:
+                        if d[0] == r:
+                            thing = d[1];
+                            reflist.append(thing);
+                        else:
+                            for d2 in d[1]:
+                                if d2[0] == "name" and d2[1] == r:
+                                    thing = d[1];
+                                    reflist.append(thing);
+                elif type(thing) == dict:
+                    for k, v in thing.items():
+                        if k == r:
+                            thing = v;
+                            reflist.append(thing);
+
+        if type(ref) == str:
+            refs = ref.split(".");
+            doit(refs);
+        
+        elif type(ref) == list:
+            doit(ref);
+        
+        thing = reflist[-1];
+    
+        return thing;
+
+    
+    async def compileToFile(self, filename, *args, **kwargs):
+        print(filename);
+
+        '''with open(filename, 'w') as file:
+            print(filename);'''
 
 
     def __init__(self, options=None):
@@ -143,20 +253,17 @@ class Project:
         projName = options.get('name') or self.id;
         projVer = options.get("version") or 2;
 
-
-        self.data = {
-            "project": {
-
-                "@app": "Snap! 10, https://snap.berkeley.edu",
-                "@name": projName,
-                "@version": projVer,
-                "notes": None,
-
-                "scenes": {
-                    "@select": "1",
-                }
-            }
-        };
+        self.data = [
+            [ 'project', [
+                [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
+                [ '@name', projName ],
+                [ '@version', projVer ],
+                [ 'notes', None ],
+                [ 'scenes', [
+                    [ '@select', 1 ]
+                ]] 
+            ]]
+        ];
 
 
 

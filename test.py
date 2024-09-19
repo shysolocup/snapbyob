@@ -6,6 +6,7 @@ proj = Project({
     "name": "very cool"
 });
 
+
 @proj.on("block.placed")
 async def test(self, ctx):
     ctx.callback(ctx, *ctx.args, **ctx.kwargs);
@@ -23,13 +24,11 @@ async def test(self, time, scene):
         { 'name': 'control.ifX', 
             
             'args': [
-                { 'name': 'sensing.keyPressed', 'args': enum.keycode.space },
-                { 'name': 'sensing.keyPressed', 'args': enum.keycode.w }
+                { 'name': 'sensing.keyPressed', 'args': enum.keycode.space }
             ], 
 
             'actions': [
-                { 'name': 'looks.say', 'args': "test1" },
-                { 'name': 'looks.say', 'args': "test2" }
+                { 'name': 'looks.say', 'args': "test1" }
             ]
         
         }
@@ -43,7 +42,9 @@ async def test():
         'height': 500
     });
 
-    await proj.ping(scene); 
+    await proj.ping(scene);
+
+    await proj.compileToFile('testfile');
 
 asyncio.run(test());
 

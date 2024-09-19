@@ -117,6 +117,11 @@ class Scene:
         };
 
 
+        '''self.data = self.project.newDataItem('project.scenes.scene', [
+            '@name': name
+        ]);'''
+
+
         for k, data in rawblockdata.items():
             name = data["blockdata"].get("name");
             category = data["blockdata"].get("category");
