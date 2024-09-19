@@ -48,10 +48,12 @@ class DataHolder:
         return thing;
 
 
-
     def getDataItem(self, ref):
-        reflist = [ getattr(self, "data") ];
+        return self.getDataItemEntry(ref)[1];
 
+
+    def getDataItemEntry(self, ref):
+        reflist = [ ["", getattr(self, "data")] ];
 
         def doit(refs):
             for r in refs:
@@ -60,6 +62,9 @@ class DataHolder:
                 if type(thing) == list:
 
                     for first in thing:
+
+                        print(first);
+
                         key = first[0];
                         item = first[1];
 
@@ -72,16 +77,16 @@ class DataHolder:
                                 inneritem = inner[1];
 
                                 if (innerkey == "name" or innerkey == "@name") and inneritem == r:
-                                    reflist.append(item);
+                                    reflist.append(first);
 
 
                         # if the key of the element matches up with the ref
 
                                 elif key == r:
-                                    reflist.append(item);
+                                    reflist.append(first);
 
                         elif key == r:
-                            reflist.append(item);
+                            reflist.append(first);
 
 
 

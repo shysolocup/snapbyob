@@ -7,6 +7,9 @@ proj = Project({
 });
 
 
+print(proj.name);
+
+
 @proj.on("block.placed")
 async def test(self, ctx):
     ctx.callback(ctx, *ctx.args, **ctx.kwargs);
