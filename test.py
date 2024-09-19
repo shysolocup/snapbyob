@@ -13,9 +13,9 @@ async def test(self, ctx):
 
 
 @proj.on("ping")
-async def test(self, time, scene):
+async def test(self, time, scene, stage):
     enum = scene.enum;
-    sprite = scene.get('sprites.sprite');
+    sprite = stage.get('sprites.sprite');
 
     # await sprite.place('looks.effect', enum.effect.saturation);
     # await sprite.place('looks.changeEffectBy', enum.effect.saturation, 10);
@@ -37,12 +37,16 @@ async def test(self, time, scene):
 
 async def test():
     scene = await proj.new('Scene', {
-        'name': "a",
-        'width': 500,
-        'height': 500
+        'name': "a"
     });
 
-    await proj.ping(scene);
+    stage = await scene.new('Stage', {
+        'name': "Stage",
+        'width': 500,
+        'height': 500
+    })
+
+    await proj.ping(scene, stage);
 
     await proj.compileToFile('testfile');
 

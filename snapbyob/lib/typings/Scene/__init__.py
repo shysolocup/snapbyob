@@ -4,6 +4,10 @@ from ..Costume import Costume;
 from ..Enum import Enum;
 from ..Sprite import Sprite;
 
+from ..DataHolder import DataHolder;
+from ..BlockHolder import BlockHolder;
+from ..SubclassHolder import SubclassHolder;
+
 from ....lib.methods.id import id
 from ....lib.methods.formFiles import formFiles;
 
@@ -62,23 +66,10 @@ for blockn, blockd in rawblocks.items():
     exec(formstring)
 
 
-class Scene:
-    def discretenew(self, t, *args, **kwargs):
-        if type(t) == str:
-            from ....__init__ import Typings;
-            t = globals().get(t) or exec('Typings.{t}'.format(t));
-
-        return t(self.project, self, *args, **kwargs);
-
-
-    async def new(self, t, *args, **kwargs):
-        if type(t) == str:
-            from ....__init__ import Typings;
-            t = globals().get(t) or Typings.get(t);
-
-        stuff = t(self.project, self, *args, **kwargs);
-        await self.project.events['new'].Fire(self.project, stuff); # Project, Any
-        return stuff
+class Scene(DataHolder, SubclassHolder):
+    @property
+    def parents(self):
+        return [ self.project ];
 
     @property
     def name(self):
@@ -98,28 +89,22 @@ class Scene:
         self.id = id(8, self.project.idcache);
         name = options.get('name') or self.id;
 
-        self.stages = {
-            'stage': self.discretenew(Stage)
-        };
+        self.data = self.project.newDataItem('project.scenes.scene', [
+            [ '@name', name ],
+            [ 'notes', [] ],
+            [ 'hidden', [] ],
+            [ 'headers', [] ],
+            [ 'code', [] ],
+            [ 'blocks', [] ]
+        ]);
+
+        print(self.data);
 
         self.enum = self.discretenew(Enum);
-
-        self.costumes = {
-            'turtle': self.discretenew(Costume)
-        };
-
-        self.sprites = {
-            'sprite': self.discretenew(Sprite, self.getCostume("turtle"))
-        }
 
         self.blocks = {
             "other": {}
         };
-
-
-        '''self.data = self.project.newDataItem('project.scenes.scene', [
-            '@name': name
-        ]);'''
 
 
         for k, data in rawblockdata.items():
@@ -193,12 +178,6 @@ class Scene:
 
     def getStage(self, n):
         return self.stages[n];
-
-    def getCostume(self, n):
-        return self.costumes[n];
-
-    def getSprite(self, n):
-        return self.sprites[n];
 
     def getBlock(self, n):
         return self.blocks[n];

@@ -1,4 +1,6 @@
 from ..Event import Event
+from ..DataHolder import DataHolder;
+from ..SubclassHolder import SubclassHolder;
 
 from ....lib.methods.id import id
 from ....lib.methods.pingtime import pingtime
@@ -6,7 +8,7 @@ from ....lib.methods.pingtime import pingtime
 import asyncio;
 
 
-class Project:
+class Project(DataHolder, SubclassHolder):
 
     @property
     def name(self):
@@ -33,156 +35,6 @@ class Project:
     async def ping(self, *args, **kwargs):
         await self.events['ping'].Fire(self, pingtime(), *args, **kwargs); # Project, pingtime, ...
 
-
-    def discretenew(self, t, *args, **kwargs):
-        if type(t) == str:
-            from ....__init__ import Typings;
-            t = globals().get(t) or exec('Typings.{t}'.format(t));
-
-        return t(self, *args, **kwargs);
-
-
-    async def new(self, t, *args, **kwargs):
-        if type(t) == str:
-            from ....__init__ import Typings;
-            t = globals().get(t) or Typings.get(t);
-
-        stuff = t(self, *args, **kwargs);
-        await self.events['new'].Fire(self, stuff); # Project, Any
-        return stuff
-    
-
-    def get(self, ref):
-        global thing
-        thing = self;
-        reflist = [ thing ];
-
-        if type(ref) == str:
-            refs = ref.split(".");
-            for r in refs:
-                try:
-                    thing = thing[r];
-                    reflist.append(thing);
-                except:
-                    thing = getattr(thing, r);
-                    reflist.append(thing);
-        
-
-        elif type(ref) == list:
-            refs = ref;
-            for r in refs:
-                try:
-                    thing = thing[r];
-                    reflist.append(thing);
-                except:
-                    thing = getattr(thing, r);
-                    reflist.append(thing);
-        
-        thing = reflist[-1];
-    
-        return thing;
-
-
-    def setDataItem(self, ref, value):
-        reflist = [ self.data ];
-
-        def doit(refs):
-            global thing;
-            thing = self.data;
-
-            for i, r in enumerate(refs):
-                for i2, d in enumerate(thing):
-
-                    if d[0] == r:
-                        thing = d[1];
-
-                        if i == len(refs)-1:
-                            d[1] = value;
-
-                        reflist.append(thing);
-                    
-                    elif d[0] != r and i2 == len(thing)-1:
-                        thing.append([ r, value ]);
-        
-                    else:
-                        for d2 in d[1]:
-                            if d2[0] == "name" and d2[1] == r:
-                                thing = d[1];
-                                reflist.append(thing);
-
-        if type(ref) == str:
-            refs = ref.split(".");
-            doit(refs);
-        
-        elif type(ref) == list:
-            doit(ref);
-        
-
-        thing = reflist[-1];
-    
-        return thing;
-
-
-    def newDataItem(self, ref, value):
-        reflist = [ self.data ];
-
-        def doit(refs):
-            global thing;
-            thing = self.data;
-
-            for i, r in enumerate(refs):
-                for i2, d in enumerate(thing):
-                    if len(thing)-1:
-                        thing.append([ r, value ]);
-
-        if type(ref) == str:
-            refs = ref.split(".");
-            doit(refs);
-        
-        elif type(ref) == list:
-            doit(ref);
-        
-
-        thing = reflist[-1];
-    
-        return thing;
-
-
-    def getDataItem(self, ref):
-        reflist = [ self.data ];
-
-        def doit(refs):
-            global thing;
-            thing = self.data;
-
-            for r in refs:
-                if type(thing) == list:
-                    for d in thing:
-                        if d[0] == r:
-                            thing = d[1];
-                            reflist.append(thing);
-                        else:
-                            for d2 in d[1]:
-                                if d2[0] == "name" and d2[1] == r:
-                                    thing = d[1];
-                                    reflist.append(thing);
-                elif type(thing) == dict:
-                    for k, v in thing.items():
-                        if k == r:
-                            thing = v;
-                            reflist.append(thing);
-
-        if type(ref) == str:
-            refs = ref.split(".");
-            doit(refs);
-        
-        elif type(ref) == list:
-            doit(ref);
-        
-        thing = reflist[-1];
-    
-        return thing;
-
     
     async def compileToFile(self, filename, *args, **kwargs):
         print(filename);
@@ -194,6 +46,8 @@ class Project:
     def __init__(self, options=None):
         if not options:
             options = {};
+
+        self.project = self;
 
         self.events = {};
         self.idcache = {};
@@ -258,7 +112,7 @@ class Project:
                 [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
                 [ '@name', projName ],
                 [ '@version', projVer ],
-                [ 'notes', None ],
+                [ 'notes', [] ],
                 [ 'scenes', [
                     [ '@select', 1 ]
                 ]] 
