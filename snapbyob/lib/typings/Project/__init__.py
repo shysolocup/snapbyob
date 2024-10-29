@@ -1,6 +1,7 @@
 from ..Event import Event
 from ..DataHolder import DataHolder;
 from ..SubclassHolder import SubclassHolder;
+from ..DataObject import DataObject;
 
 from ....lib.methods.id import id
 from ....lib.methods.pingtime import pingtime
@@ -107,17 +108,17 @@ class Project(DataHolder, SubclassHolder):
         projName = options.get('name') or self.id;
         projVer = options.get("version") or 2;
 
-        self.data = [
-            [ 'project', [
+        self.data = DataObject([
+            [ 'project', DataObject([
                 [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
                 [ '@name', projName ],
                 [ '@version', projVer ],
-                [ 'notes', [] ],
-                [ 'scenes', [
+                [ 'notes', DataObject([]) ],
+                [ 'scenes', DataObject([
                     [ '@select', 1 ]
-                ]] 
-            ]]
-        ];
+                ])] 
+            ])]
+        ]);
 
 
 
