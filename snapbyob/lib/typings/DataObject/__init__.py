@@ -88,10 +88,69 @@ class DataObject:
                 name = e[1].get("@name");
 
             callback(name, e[1], e[0], i);
+    
+
+    def getDeep(self, ref):
+        global thing
+        thing = self;
+        reflist = [ thing ];
+
+        if type(ref) == str:
+            refs = ref.split(".");
+            for r in refs:
+                if type(thing) == DataObject:
+                    thing = thing.get(r);
+                    reflist.append(thing);
+                else:
+                    try:
+                        thing = thing[r];
+                        reflist.append(thing);
+                    except:
+                        thing = getattr(thing, r);
+                        reflist.append(thing);
+        
+
+        elif type(ref) == list:
+            refs = ref;
+            for r in refs:
+                if type(thing) == DataObject:
+                    thing = thing.get(r);
+                    reflist.append(thing);
+                else:
+                    try:
+                        thing = thing[r];
+                        reflist.append(thing);
+                    except:
+                        thing = getattr(thing, r);
+                        reflist.append(thing);
+        
+        thing = reflist[-1];
+
+        return thing;
 
 
     def __len__(self):
         return len(self.__data__);
+
+
+    def __str__(self):
+        name = self.get("@name");
+
+        formatypes = [
+            str,
+            int,
+            float,
+            dict,
+            list,
+            tuple
+        ]
+
+        formatted = {};
+
+        if name:
+            return f"<DataObject \"{name}\" ({self.length})>";  
+        else:
+            return f"<DataObject] ({self.length})>";
 
 
     def tostring(self):

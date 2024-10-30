@@ -7,12 +7,8 @@ proj = Project({
 });
 
 
-@proj.data.forEach
-def callback(k, v, t, i):
-
-    @v.forEach
-    def callback(k, v, t, i):
-        print(k, v);
+scenes = proj.xmldata.getDeep("project");
+print(scenes);
 
 
 '''

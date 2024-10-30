@@ -108,7 +108,7 @@ class Project(DataHolder, SubclassHolder):
         projName = options.get('name') or self.id;
         projVer = options.get("version") or 2;
 
-        self.data = DataObject([
+        self.xmldata = DataObject([
             [ 'project', DataObject([
                 [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
                 [ '@name', projName ],

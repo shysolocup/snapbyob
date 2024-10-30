@@ -4,6 +4,8 @@ from ..Costume import Costume;
 from ..Enum import Enum;
 from ..Sprite import Sprite;
 
+from ..DataObject import DataObject;
+
 from ..DataHolder import DataHolder;
 from ..BlockHolder import BlockHolder;
 from ..SubclassHolder import SubclassHolder;
