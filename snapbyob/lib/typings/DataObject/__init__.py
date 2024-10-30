@@ -136,21 +136,67 @@ class DataObject:
     def __str__(self):
         name = self.get("@name");
 
-        formatypes = [
+        passtypes = [
             str,
             int,
             float,
-            dict,
-            list,
-            tuple
-        ]
+            complex,
+            bool,
+        ];
+
+
+        def doesPass(v):
+            for t in passtypes:
+                if t == type(v):
+                    return True;
+            return False;
+
 
         formatted = {};
 
+
+        @self.forEach
+        def callback(k, v, c, i):
+            try:
+                getattr(formatted, k);
+
+                numb = 1;
+                while True:
+                    s = f"{k}.{numb}";
+
+                    try:
+                        getattr(formatted, s);
+                        numb += 1; 
+                    except:
+                        if doesPass(v):
+                            if type(v) == str:
+                                formatted[s] = f"{v}";
+                            else:
+                                formatted[s] = v;
+                        else:
+                            formatted[k] = f'*TYPE_START*{type(v).__name__}*TYPE_END*';
+                        break;
+             
+            except:
+
+                if doesPass(v):
+                    if type(v) == str:
+                        formatted[k] = f"{v}";
+                    else:
+                        formatted[k] = v;
+                else:
+                    formatted[k] = f'*TYPE_START*{type(v).__name__}*TYPE_END*';
+
+
+        formattedStr = json.dumps(formatted, indent=4);
+
+        formattedStr = formattedStr.replace('"*TYPE_START*', "");
+        formattedStr = formattedStr.replace('*TYPE_END*"', "");
+
         if name:
-            return f"<DataObject \"{name}\" ({self.length})>";  
+            return f"DataObject \"{name}\" ({self.length}) {formattedStr}";  
         else:
-            return f"<DataObject] ({self.length})>";
+            return f"DataObject] ({self.length}) {formattedStr}";
 
 
     def tostring(self):
