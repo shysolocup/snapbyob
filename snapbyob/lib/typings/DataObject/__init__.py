@@ -57,6 +57,8 @@ class DataObject:
                 self.__data__[i] = [ e[0], v ];
                 return e[1];
 
+        self.__data__.append([ k, v ]);
+
 
     def getFirstOfClass(self, c):
         for e in self.__data__:
@@ -74,8 +76,7 @@ class DataObject:
                 self.__data__[i] = [ e[0], v ];
                 return e[1];
 
-        if (type(e[1]) == DataObject and e[1].get("@name")) and (type(v) == DataObject and not v.get("@name")):
-            v.set("@name", e[1].get("@name"));
+        self.__data__.append([ c, v ]);
 
     
     def forEach(self, callback):
