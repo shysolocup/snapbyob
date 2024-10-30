@@ -84,7 +84,7 @@ class DataObject:
 
             name = e[0];
 
-            if type(e[1]) == DataObject:
+            if type(e[1]) == DataObject and e[1].get("@name"):
                 name = e[1].get("@name");
 
             callback(name, e[1], e[0], i);

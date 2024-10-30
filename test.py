@@ -7,15 +7,12 @@ proj = Project({
 });
 
 
-proj.data.set("CoolProject", DataObject([
-    ["a", "b"],
-    ["d", "c"]
-]));
-
-
 @proj.data.forEach
 def callback(k, v, t, i):
-    print(k, t, v);
+
+    @v.forEach
+    def callback(k, v, t, i):
+        print(k, v);
 
 
 '''
