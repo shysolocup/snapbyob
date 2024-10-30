@@ -7,7 +7,7 @@ proj = Project({
 });
 
 
-scenes = proj.xmldata.getDeep("project");
+scenes = proj.xmldata.getDeep("project.scenes");
 print(scenes);
 
 

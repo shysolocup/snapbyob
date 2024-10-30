@@ -194,9 +194,9 @@ class DataObject:
         formattedStr = formattedStr.replace('*TYPE_END*"', "");
 
         if name:
-            return f"DataObject \"{name}\" ({self.length}) {formattedStr}";  
+            return f"[DataObject] \"{name}\" ({self.length}) {formattedStr}";  
         else:
-            return f"DataObject] ({self.length}) {formattedStr}";
+            return f"[DataObject] ({self.length}) {formattedStr}";
 
 
     def tostring(self):
