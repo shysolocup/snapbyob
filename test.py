@@ -7,8 +7,9 @@ proj = Project({
 });
 
 
-scenes = proj.xmldata.getDeep("project.scenes");
-print(scenes);
+print(proj.xmldata.get("project"));
+print('\n');
+print(proj.xmldata.getDeep("project.scenes"));
 
 
 '''
