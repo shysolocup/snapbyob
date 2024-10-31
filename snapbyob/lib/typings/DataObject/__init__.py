@@ -50,9 +50,10 @@ class DataObject:
                     v.set("@name", e[1].get("@name"));
 
                 self.__data__[i] = [ e[0], v ];
-                return e[1];
+                return v;
 
         self.__data__.append([ k, v ]);
+        return v
 
 
     def getFirstOfClass(self, c):
@@ -96,18 +97,15 @@ class DataObject:
 
                 if i == len(refs)-1:
                     if type(thing) == DataObject:
-                        old = thing.get(r);
                         thing = thing.set(r, value);
-                        return old
+                        return thing
                     else:
                         try:
-                            old = thing[r];
                             thing[r] = value;
-                            return old
+                            return thing[r];
                         except:
-                            old = getattr(thing, r);
                             setattr(thing, r, value);
-                            return old;
+                            return getattr(thing, r);
                 else:
                     if type(thing) == DataObject:
                         thing = thing.get(r);
@@ -127,18 +125,15 @@ class DataObject:
 
                 if i == len(refs)-1:
                     if type(thing) == DataObject:
-                        old = thing.get(r);
                         thing = thing.set(r, value);
-                        return old
+                        return thing;
                     else:
                         try:
-                            old = thing[r];
                             thing[r] = value;
-                            return old
+                            return thing[r];
                         except:
-                            old = getattr(thing, r);
                             setattr(thing, r, value);
-                            return old;
+                            return getattr(thing, r);
                 else:
                     if type(thing) == DataObject:
                         thing = thing.get(r);

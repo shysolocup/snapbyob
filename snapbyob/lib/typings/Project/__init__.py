@@ -1,5 +1,4 @@
 from ..Event import Event
-from ..DataHolder import DataHolder;
 from ..SubclassHolder import SubclassHolder;
 from ..DataObject import DataObject;
 
@@ -9,7 +8,7 @@ from ....lib.methods.pingtime import pingtime
 import asyncio;
 
 
-class Project(DataHolder, SubclassHolder):
+class Project(SubclassHolder):
 
     @property
     def name(self):
@@ -18,7 +17,7 @@ class Project(DataHolder, SubclassHolder):
     @name.setter
     def name(self, v):
         oldname = self.xmldata.getDeep('project.@name');
-        self.xmldata.setDeep('project.@name', v);
+        self.xmldata.setDeep('project.@name', str(v));
         asyncio.run(self.events["project"]["renamed"].Fire(self, oldname, v)); # Project, oldName, newName
 
 
@@ -29,7 +28,7 @@ class Project(DataHolder, SubclassHolder):
     @version.setter
     def version(self, v):
         oldver = self.xmldata.getDeep('project.@version');
-        self.xmldata.setDeep('project.@version', v);
+        self.xmldata.setDeep('project.@version', str(v));
         asyncio.run(self.events["project"]["reversioned"].Fire(self, oldver, v)); # Project, oldVer, newVer
 
 
@@ -76,6 +75,16 @@ class Project(DataHolder, SubclassHolder):
                 'updated': self.discretenew(Event, category="scene")
             },
 
+
+            # stages
+            'stage': {
+                'renamed': self.discretenew(Event, category="stage"),
+                'created': self.discretenew(Event, category="stage"),
+                'destroyed': self.discretenew(Event, category="stage"),
+                'updated': self.discretenew(Event, category="stage"),
+                'sizeChanged': self.discretenew(Event, category="stage")
+            },
+
             
             # events
             'event': {
@@ -112,10 +121,10 @@ class Project(DataHolder, SubclassHolder):
             [ 'project', DataObject([
                 [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
                 [ '@name', projName ],
-                [ '@version', projVer ],
+                [ '@version', str(projVer) ],
                 [ 'notes', DataObject([]) ],
                 [ 'scenes', DataObject([
-                    [ '@select', 1 ]
+                    [ '@select', str(1) ]
                 ])] 
             ])]
         ]);

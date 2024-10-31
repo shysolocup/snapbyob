@@ -19,6 +19,12 @@ class Color3:
 
     def fromRGB(self, r=255, g=255, b=255, t=1):
         return self.__init__(r/255, g/255, b/255, t)
+    
+
+    def __str__(self):
+        r, g, b, t = self.toRGB();
+        return f"{r},{g},{b},{t}"; 
+    tostring = lambda self : str(self)
 
 
     def __init__(self, r=1, g=1, b=1, t=1):

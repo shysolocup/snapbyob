@@ -6,7 +6,6 @@ from ..Sprite import Sprite;
 
 from ..DataObject import DataObject;
 
-from ..DataHolder import DataHolder;
 from ..BlockHolder import BlockHolder;
 from ..SubclassHolder import SubclassHolder;
 
@@ -68,19 +67,20 @@ for blockn, blockd in rawblocks.items():
     exec(formstring)
 
 
-class Scene(DataHolder, SubclassHolder):
+class Scene(SubclassHolder):
     @property
     def parents(self):
         return [ self.project ];
 
     @property
     def name(self):
-        return self.project.data["project"]["scenes"]["@name"]
+        return self.xmldata.getDeep('@name');
 
     @name.setter
     def name(self, v):
-        asyncio.run(self.project.events["scene"]["renamed"].Fire(self.project, self, self.project.data["project"]["@name"], v)); # Project, Scene, oldName, newName
-        self.project.data["project"]["@name"] = v
+        oldname = self.xmldata.getDeep('@name');
+        self.xmldata.setDeep('@name', str(v));
+        asyncio.run(self.project.events["scene"]["renamed"].Fire(self, oldname, v)); # Scene, oldName, newName
 
     def __init__(self, proj, options=None):
         if not options:
@@ -91,16 +91,16 @@ class Scene(DataHolder, SubclassHolder):
         self.id = id(8, self.project.idcache);
         name = options.get('name') or self.id;
 
-        self.data = self.project.newDataItem('project.scenes.scene', [
-            [ '@name', name ],
-            [ 'notes', [] ],
-            [ 'hidden', [] ],
-            [ 'headers', [] ],
-            [ 'code', [] ],
-            [ 'blocks', [] ]
-        ]);
 
-        print(self.data);
+        self.xmldata = self.project.xmldata.setDeep('project.scenes.scene', DataObject([
+            [ '@name', name ],
+            [ 'notes', DataObject([]) ],
+            [ 'hidden', DataObject([]) ],
+            [ 'headers', DataObject([]) ],
+            [ 'code', DataObject([]) ],
+            [ 'blocks', DataObject([]) ],
+            [ 'variables', DataObject([]) ]
+        ]));
 
         self.enum = self.discretenew(Enum);
 

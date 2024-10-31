@@ -7,11 +7,6 @@ proj = Project({
 });
 
 
-proj.name = "cool";
-proj.version = 5;
-
-
-'''
 @proj.on("block.placed")
 async def test(self, ctx):
     ctx.callback(ctx, *ctx.args, **ctx.kwargs);
@@ -37,8 +32,12 @@ async def test(self, time, scene, stage):
             ]
         
         }
-    ])
+    ]);
 
+    stage.name = "a";
+
+    print(stage.name);
+    print(stage.width);
 
 async def test():
     scene = await proj.new('Scene', {
@@ -56,6 +55,3 @@ async def test():
     await proj.compileToFile('testfile');
 
 asyncio.run(test());
-
-
-'''
