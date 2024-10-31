@@ -13,23 +13,23 @@ class Project(DataHolder, SubclassHolder):
 
     @property
     def name(self):
-        return self.getDataItem('project.@name');
+        return self.xmldata.getDeep('project.@name');
 
     @name.setter
     def name(self, v):
-        oldname = self.getDataItem('project.@name');
-        self.setDataItem('project.@name', v);
+        oldname = self.xmldata.getDeep('project.@name');
+        self.xmldata.setDeep('project.@name', v);
         asyncio.run(self.events["project"]["renamed"].Fire(self, oldname, v)); # Project, oldName, newName
 
 
     @property
     def version(self):
-        return self.getDataItem('project.@version')
+        return self.xmldata.getDeep('project.@version');
 
     @version.setter
     def version(self, v):
-        oldver = self.getDataItem('project.@version');
-        self.setDataItem('project.@version', v);
+        oldver = self.xmldata.getDeep('project.@version');
+        self.xmldata.setDeep('project.@version', v);
         asyncio.run(self.events["project"]["reversioned"].Fire(self, oldver, v)); # Project, oldVer, newVer
 
 

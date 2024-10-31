@@ -7,9 +7,8 @@ proj = Project({
 });
 
 
-print(proj.xmldata.get("project"));
-print('\n');
-print(proj.xmldata.getDeep("project.scenes"));
+proj.name = "cool";
+proj.version = 5;
 
 
 '''
