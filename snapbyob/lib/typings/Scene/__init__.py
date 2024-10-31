@@ -80,7 +80,7 @@ class Scene(SubclassHolder):
     def name(self, v):
         oldname = self.xmldata.getDeep('@name');
         self.xmldata.setDeep('@name', str(v));
-        asyncio.run(self.project.events["scene"]["renamed"].Fire(self, oldname, v)); # Scene, oldName, newName
+        # asyncio.run(self.project.events["scene"]["renamed"].Fire(self, oldname, v)); # Scene, oldName, newName
 
     def __init__(self, proj, options=None):
         if not options:

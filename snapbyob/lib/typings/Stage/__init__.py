@@ -116,7 +116,7 @@ class Stage(BlockHolder, SubclassHolder):
     def name(self, v):
         oldname = self.xmldata.getDeep('@name');
         self.xmldata.setDeep('@name', str(v));
-        asyncio.run(self.project.events["stage"]["renamed"].Fire(self, oldname, v)); # Stage, oldName, newName
+        # asyncio.run(self.project.events["stage"]["renamed"].Fire(self, oldname, v)); # Stage, oldName, newName
 
 
     @property
@@ -124,10 +124,16 @@ class Stage(BlockHolder, SubclassHolder):
         return self.xmldata.getDeep('@width');
 
     @width.setter
-    def callback(self, v):
+    def width(self, v):
         old = self.xmldata.getDeep('@width');
         self.xmldata.setDeep('@width', str(v));
-        asyncio.run(self.project.events["stage"]["sizeChanged"].Fire(self, old, v)); # Stage, old, new
+        
+        y = int(self.xmldata.get("@height"));
+
+        oldvect = Vector2(int(old), y);
+        newvect = Vector2(int(v), y);
+
+        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, oldvect, newvect)); # Stage, old, new
 
 
     
@@ -136,7 +142,13 @@ class Stage(BlockHolder, SubclassHolder):
         return self.xmldata.getDeep('@height');
 
     @height.setter
-    def callback(self, v):
+    def height(self, v):
         old = self.xmldata.getDeep('@height');
-        self.xmldata.setDeep('@width', str(v));
-        asyncio.run(self.project.events["stage"]["sizeChanged"].Fire(self, old, v)); # Stage, old, new
+        self.xmldata.setDeep('@height', str(v));
+
+        x = int(self.xmldata.get("@width"));
+
+        oldvect = Vector2(x, int(old));
+        newvect = Vector2(x, int(v));
+
+        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, oldvect, newvect)); # Stage, old, new

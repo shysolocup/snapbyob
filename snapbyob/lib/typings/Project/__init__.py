@@ -18,7 +18,7 @@ class Project(SubclassHolder):
     def name(self, v):
         oldname = self.xmldata.getDeep('project.@name');
         self.xmldata.setDeep('project.@name', str(v));
-        asyncio.run(self.events["project"]["renamed"].Fire(self, oldname, v)); # Project, oldName, newName
+        # asyncio.run(self.events["project"]["renamed"].Fire(self, oldname, v)); # Project, oldName, newName
 
 
     @property
@@ -82,7 +82,7 @@ class Project(SubclassHolder):
                 'created': self.discretenew(Event, category="stage"),
                 'destroyed': self.discretenew(Event, category="stage"),
                 'updated': self.discretenew(Event, category="stage"),
-                'sizeChanged': self.discretenew(Event, category="stage")
+                'resized': self.discretenew(Event, category="stage")
             },
 
             

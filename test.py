@@ -12,6 +12,7 @@ async def test(self, ctx):
     ctx.callback(ctx, *ctx.args, **ctx.kwargs);
 
 
+
 @proj.on("ping")
 async def test(self, time, scene, stage):
     enum = scene.enum;
@@ -34,7 +35,7 @@ async def test(self, time, scene, stage):
         }
     ]);
 
-    stage.name = "a";
+    stage.width = 5;
 
     print(stage.name);
     print(stage.width);
