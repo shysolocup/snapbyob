@@ -3,7 +3,7 @@ from ..LineType import LineTypeItem, LineType;
 from ..Color3 import Color3;
 from ..Costume import Costume;
 from ..Sprite import Sprite;
-from ..Point import Point;
+from ..Vector2 import Vector2;
 
 from ..DataObject import DataObject;
 
@@ -84,7 +84,6 @@ class Stage(BlockHolder, SubclassHolder):
             [ 'sprites', DataObject([]) ],
         ]));
 
-
         self.costumes = {
             'turtle': self.discretenew(Costume)
         };
@@ -125,7 +124,19 @@ class Stage(BlockHolder, SubclassHolder):
         return self.xmldata.getDeep('@width');
 
     @width.setter
-    def width(self, v):
+    def callback(self, v):
         old = self.xmldata.getDeep('@width');
+        self.xmldata.setDeep('@width', str(v));
+        asyncio.run(self.project.events["stage"]["sizeChanged"].Fire(self, old, v)); # Stage, old, new
+
+
+    
+    @property
+    def height(self):
+        return self.xmldata.getDeep('@height');
+
+    @height.setter
+    def callback(self, v):
+        old = self.xmldata.getDeep('@height');
         self.xmldata.setDeep('@width', str(v));
         asyncio.run(self.project.events["stage"]["sizeChanged"].Fire(self, old, v)); # Stage, old, new
