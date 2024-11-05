@@ -5,7 +5,7 @@ from ..Costume import Costume;
 from ..Sprite import Sprite;
 from ..Space2 import Space2;
 
-from ..DataObject import DataObject;
+from ..XmlDict import XmlDict;
 
 from ..BlockHolder import BlockHolder;
 from ..SubclassHolder import SubclassHolder;
@@ -32,9 +32,12 @@ class Stage(BlockHolder, SubclassHolder):
         # strings
         name: str = options.get('name') or self.id;
         
+
+        # space
+        size: Space2 = options.get("size") or Space2(480, 360);
+
+
         # ints & floats
-        width: int | float = options.get('width') or 480;
-        height: int | float = options.get('height') or 360;
         tempo: int | float = options.get('tempo') or 60;
         volume: int | float = options.get('volume') or 100;
         pan: int | float = options.get('pan') or 0;
@@ -57,10 +60,10 @@ class Stage(BlockHolder, SubclassHolder):
         background: BackgroundItem = options.get('background') or Background.blank;
 
 
-        self.xmldata = self.scene.xmldata.setDeep('stage', DataObject([
+        self.xmldata = self.scene.xmldata.setDeep('stage', XmlDict([
             [ '@name', name ],
-            [ '@width', str(width) ],
-            [ '@height', str(height) ],
+            [ '@width', str(size.x) ],
+            [ '@height', str(size.y) ],
             [ '@costume', "0" ],
             [ '@color', color.tostring() ],
             [ '@tempo', str(tempo) ],
@@ -76,12 +79,12 @@ class Stage(BlockHolder, SubclassHolder):
 
             [ 'pentrails', None ],
             
-            [ 'costumes', DataObject([]) ],
-            [ 'sounds', DataObject([]) ],
-            [ 'variables', DataObject([]) ],
-            [ 'blocks', DataObject([]) ],
-            [ 'scripts', DataObject([]) ],
-            [ 'sprites', DataObject([]) ],
+            [ 'costumes', XmlDict("costumes") ],
+            [ 'sounds', XmlDict("sounds") ],
+            [ 'variables', XmlDict("variables") ],
+            [ 'blocks', XmlDict("blocks") ],
+            [ 'scripts', XmlDict("scripts") ],
+            [ 'sprites', XmlDict("sprites") ],
         ]));
 
         self.costumes = {
@@ -89,7 +92,10 @@ class Stage(BlockHolder, SubclassHolder):
         };
 
         self.sprites = {
-            'sprite': self.discretenew(Sprite, self.getCostume("turtle"))
+            'sprite': self.discretenew(Sprite, {
+                "name": "sprite",
+                "costume": self.getCostume("turtle")
+            })
         }
 
         # print(self.scene.data);

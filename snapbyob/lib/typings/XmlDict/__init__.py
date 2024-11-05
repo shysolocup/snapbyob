@@ -1,17 +1,18 @@
 import json;
 
 
-class DataObject:
+class XmlDict:
 
     @property
     def length(self):
         return len(self.__data__);
         
 
-    def __init__(self, data : list = None):
+    def __init__(self, header: str, data : list = None):
         if not data:
             data = [];
         
+        self.__header__ = header;
         self.__data__ = data;
 
         '''
@@ -38,15 +39,15 @@ class DataObject:
 
     def get(self, k):
         for e in self.__data__:
-            if (type(e[1]) == DataObject and e[1].get("@name") and e[1].get("@name") == k) or (e[0] == k):
+            if (type(e[1]) == XmlDict and e[1].get("@name") and e[1].get("@name") == k) or (e[0] == k):
                 return e[1];
 
 
     def set(self, k, v):
         for i, e in enumerate(self.__data__):
-            if (type(e[1]) == DataObject and e[1].get("@name") and e[1].get("@name") == k) or (e[0] == k):
+            if (type(e[1]) == XmlDict and e[1].get("@name") and e[1].get("@name") == k) or (e[0] == k):
 
-                if (type(e[1]) == DataObject and e[1].get("@name")) and (type(v) == DataObject and not v.get("@name")):
+                if (type(e[1]) == XmlDict and e[1].get("@name")) and (type(v) == XmlDict and not v.get("@name")):
                     v.set("@name", e[1].get("@name"));
 
                 self.__data__[i] = [ e[0], v ];
@@ -66,7 +67,7 @@ class DataObject:
         for i, e in enumerate(self.__data__):
             if e[0] == c:
 
-                if (type(e[1]) == DataObject and e[1].get("@name")) and (type(v) == DataObject and not v.get("@name")):
+                if (type(e[1]) == XmlDict and e[1].get("@name")) and (type(v) == XmlDict and not v.get("@name")):
                     v.set("@name", e[1].get("@name"));
 
                 self.__data__[i] = [ e[0], v ];
@@ -80,7 +81,7 @@ class DataObject:
 
             name = e[0];
 
-            if type(e[1]) == DataObject and e[1].get("@name"):
+            if type(e[1]) == XmlDict and e[1].get("@name"):
                 name = e[1].get("@name");
 
             callback(name, e[1], e[0], i);
@@ -96,7 +97,7 @@ class DataObject:
             for i, r in enumerate(refs):
 
                 if i == len(refs)-1:
-                    if type(thing) == DataObject:
+                    if type(thing) == XmlDict:
                         thing = thing.set(r, value);
                         return thing
                     else:
@@ -107,7 +108,7 @@ class DataObject:
                             setattr(thing, r, value);
                             return getattr(thing, r);
                 else:
-                    if type(thing) == DataObject:
+                    if type(thing) == XmlDict:
                         thing = thing.get(r);
                         reflist.append(thing);
                     else:
@@ -124,7 +125,7 @@ class DataObject:
             for i, r in enumerate(refs):
 
                 if i == len(refs)-1:
-                    if type(thing) == DataObject:
+                    if type(thing) == XmlDict:
                         thing = thing.set(r, value);
                         return thing;
                     else:
@@ -135,7 +136,7 @@ class DataObject:
                             setattr(thing, r, value);
                             return getattr(thing, r);
                 else:
-                    if type(thing) == DataObject:
+                    if type(thing) == XmlDict:
                         thing = thing.get(r);
                         reflist.append(thing);
                     else:
@@ -155,7 +156,7 @@ class DataObject:
         if type(ref) == str:
             refs = ref.split(".");
             for r in refs:
-                if type(thing) == DataObject:
+                if type(thing) == XmlDict:
                     thing = thing.get(r);
                     reflist.append(thing);
                 else:
@@ -170,7 +171,7 @@ class DataObject:
         elif type(ref) == list:
             refs = ref;
             for r in refs:
-                if type(thing) == DataObject:
+                if type(thing) == XmlDict:
                     thing = thing.get(r);
                     reflist.append(thing);
                 else:
@@ -251,9 +252,9 @@ class DataObject:
         formattedStr = formattedStr.replace('*TYPE_END*"', "");
 
         if name:
-            return f"[DataObject] \"{name}\" ({self.length}) {formattedStr}";  
+            return f"[XmlDict] <{self.__header__}> \"{name}\" ({self.length}) {formattedStr}";  
         else:
-            return f"[DataObject] ({self.length}) {formattedStr}";
+            return f"[XmlDict] <{self.__header__}> ({self.length}) {formattedStr}";
 
 
     def tostring(self):

@@ -1,6 +1,6 @@
 from ..Event import Event
 from ..SubclassHolder import SubclassHolder;
-from ..DataObject import DataObject;
+from ..XmlDict import XmlDict;
 
 from ....lib.methods.id import id
 from ....lib.methods.pingtime import pingtime
@@ -117,13 +117,13 @@ class Project(SubclassHolder):
         projName = options.get('name') or self.id;
         projVer = options.get("version") or 2;
 
-        self.xmldata = DataObject([
-            [ 'project', DataObject([
+        self.xmldata = XmlDict("data", [
+            [ 'project', XmlDict("project", [
                 [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
                 [ '@name', projName ],
                 [ '@version', str(projVer) ],
-                [ 'notes', DataObject([]) ],
-                [ 'scenes', DataObject([
+                [ 'notes', XmlDict("notes") ],
+                [ 'scenes', XmlDict("scenes", [
                     [ '@select', str(1) ]
                 ])] 
             ])]

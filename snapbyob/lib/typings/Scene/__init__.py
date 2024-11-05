@@ -4,7 +4,7 @@ from ..Costume import Costume;
 from ..Enum import Enum;
 from ..Sprite import Sprite;
 
-from ..DataObject import DataObject;
+from ..XmlDict import XmlDict;
 
 from ..BlockHolder import BlockHolder;
 from ..SubclassHolder import SubclassHolder;
@@ -92,14 +92,14 @@ class Scene(SubclassHolder):
         name = options.get('name') or self.id;
 
 
-        self.xmldata = self.project.xmldata.setDeep('project.scenes.scene', DataObject([
+        self.xmldata = self.project.xmldata.setDeep('project.scenes.scene', XmlDict("scene", [
             [ '@name', name ],
-            [ 'notes', DataObject([]) ],
-            [ 'hidden', DataObject([]) ],
-            [ 'headers', DataObject([]) ],
-            [ 'code', DataObject([]) ],
-            [ 'blocks', DataObject([]) ],
-            [ 'variables', DataObject([]) ]
+            [ 'notes', XmlDict("notes") ],
+            [ 'hidden', XmlDict("hidden") ],
+            [ 'headers', XmlDict("headers") ],
+            [ 'code', XmlDict("code") ],
+            [ 'blocks', XmlDict("blocks") ],
+            [ 'variables', XmlDict("variables") ]
         ]));
 
         self.enum = self.discretenew(Enum);

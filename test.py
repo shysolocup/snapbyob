@@ -1,4 +1,4 @@
-from snapbyob import Project, TimeConv, DataObject, Space2;
+from snapbyob import Project, TimeConv, XmlDict, Space2;
 import asyncio;
 
 
@@ -35,9 +35,7 @@ async def test(self, time, scene, stage):
         }
     ]);
 
-    stage.size *= Space2(0.5, 0.5);
-
-    print(stage.size);
+    print(stage.getSprite("sprite").xmldata);
 
 async def test():
     scene = await proj.new('Scene', {
@@ -46,8 +44,7 @@ async def test():
 
     stage = await scene.new('Stage', {
         'name': "Stage",
-        'width': 500,
-        'height': 500
+        'size': Space2(500, 500)
     })
 
     await proj.ping(scene, stage);
