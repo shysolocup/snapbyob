@@ -1,4 +1,4 @@
-from snapbyob import Project, TimeConv, DataObject;
+from snapbyob import Project, TimeConv, DataObject, Space2;
 import asyncio;
 
 
@@ -35,10 +35,9 @@ async def test(self, time, scene, stage):
         }
     ]);
 
-    stage.width = 5;
+    stage.size *= Space2(0.5, 0.5);
 
-    print(stage.name);
-    print(stage.width);
+    print(stage.size);
 
 async def test():
     scene = await proj.new('Scene', {

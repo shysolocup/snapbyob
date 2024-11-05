@@ -3,7 +3,7 @@ from ..LineType import LineTypeItem, LineType;
 from ..Color3 import Color3;
 from ..Costume import Costume;
 from ..Sprite import Sprite;
-from ..Vector2 import Vector2;
+from ..Space2 import Space2;
 
 from ..DataObject import DataObject;
 
@@ -120,20 +120,36 @@ class Stage(BlockHolder, SubclassHolder):
 
 
     @property
+    def size(self):
+        return Space2(self.xmldata.getDeep('@width'), self.xmldata.getDeep('@height'));
+
+
+    @size.setter
+    def size(self, v):
+        old = self.size;
+
+        self.xmldata.setDeep('@width', v.x);
+        self.xmldata.setDeep('@height', v.y);
+
+        new = self.size;
+
+        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, old, new)); # Stage, old, new
+
+
+
+    @property
     def width(self):
         return self.xmldata.getDeep('@width');
 
     @width.setter
     def width(self, v):
-        old = self.xmldata.getDeep('@width');
+        old = self.size;
+        
         self.xmldata.setDeep('@width', str(v));
         
-        y = int(self.xmldata.get("@height"));
+        new = self.size;
 
-        oldvect = Vector2(int(old), y);
-        newvect = Vector2(int(v), y);
-
-        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, oldvect, newvect)); # Stage, old, new
+        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, old, new)); # Stage, old, new
 
 
     
@@ -143,12 +159,10 @@ class Stage(BlockHolder, SubclassHolder):
 
     @height.setter
     def height(self, v):
-        old = self.xmldata.getDeep('@height');
+        old = self.size;
+        
         self.xmldata.setDeep('@height', str(v));
+        
+        new = self.size;
 
-        x = int(self.xmldata.get("@width"));
-
-        oldvect = Vector2(x, int(old));
-        newvect = Vector2(x, int(v));
-
-        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, oldvect, newvect)); # Stage, old, new
+        # asyncio.run(self.project.events["stage"]["resized"].Fire(self, old, new)); # Stage, old, new
