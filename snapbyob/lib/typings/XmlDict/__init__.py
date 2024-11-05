@@ -252,9 +252,9 @@ class XmlDict:
         formattedStr = formattedStr.replace('*TYPE_END*"', "");
 
         if name:
-            return f"[XmlDict] <{self.__header__}> \"{name}\" ({self.length}) {formattedStr}";  
+            return f"<{self.__header__}> \"{name}\" ({self.length}) {formattedStr}";  
         else:
-            return f"[XmlDict] <{self.__header__}> ({self.length}) {formattedStr}";
+            return f"<{self.__header__}> ({self.length}) {formattedStr}";
 
 
     def tostring(self):
