@@ -251,10 +251,12 @@ class XmlDict:
         formattedStr = formattedStr.replace('"*TYPE_START*', "");
         formattedStr = formattedStr.replace('*TYPE_END*"', "");
 
+        header = f"<{self.__header__}>" if self.__header__ != "__file__" else "XmlFile"
+
         if name:
-            return f"<{self.__header__}> \"{name}\" ({self.length}) {formattedStr}";  
+            return f"{header} \"{name}\" ({self.length}) {formattedStr}";  
         else:
-            return f"<{self.__header__}> ({self.length}) {formattedStr}";
+            return f"{header} ({self.length}) {formattedStr}";
 
 
     def tostring(self):

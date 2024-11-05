@@ -117,7 +117,7 @@ class Project(SubclassHolder):
         projName = options.get('name') or self.id;
         projVer = options.get("version") or 2;
 
-        self.xmldata = XmlDict("data", [
+        self.xmldata = XmlDict("__file__", [
             [ 'project', XmlDict("project", [
                 [ '@app',  "Snap! 10, https://snap.berkeley.edu" ],
                 [ '@name', projName ],

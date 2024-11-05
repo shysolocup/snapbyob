@@ -60,7 +60,7 @@ class Stage(BlockHolder, SubclassHolder):
         background: BackgroundItem = options.get('background') or Background.blank;
 
 
-        self.xmldata = self.scene.xmldata.setDeep('stage', XmlDict([
+        self.xmldata = self.scene.xmldata.setDeep('stage', XmlDict("stage", [
             [ '@name', name ],
             [ '@width', str(size.x) ],
             [ '@height', str(size.y) ],

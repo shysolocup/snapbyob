@@ -35,7 +35,7 @@ async def test(self, time, scene, stage):
         }
     ]);
 
-    print(stage.getSprite("sprite").xmldata);
+    print(stage.xmldata);
 
 async def test():
     scene = await proj.new('Scene', {
